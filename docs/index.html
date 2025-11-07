@@ -74,10 +74,20 @@
     /* ✅ AI 상담 버튼 */
     .ai-help{margin-top:18px;text-align:center}
     .ai-btn{
-      display:inline-block;background:var(--brand);color:#fff;padding:12px 20px;border-radius:12px;
-      font-weight:900;font-size:16px;box-shadow:0 6px 18px var(--shadow);transition:background .2s, transform .1s;
-    }
-    .ai-btn:hover{background:#1d4ed8;transform:translateY(-2px)}
+  display:inline-block;
+  background:#ef4444; /* 🔴 기본 빨강 */
+  color:#fff;
+  padding:12px 20px;
+  border-radius:12px;
+  font-weight:900;
+  font-size:16px;
+  box-shadow:0 6px 18px var(--shadow);
+  transition:background .2s, transform .1s;
+}
+.ai-btn:hover{
+  background:#dc2626; /* 🔴 hover 시 진한 빨강 */
+  transform:translateY(-2px);
+}
   </style>
 </head>
 <body>
@@ -185,3 +195,4 @@
   </script>
 </body>
 </html>
+
