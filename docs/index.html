@@ -16,15 +16,9 @@
 
   <style>
     :root{
-      --bg:#0b1220;          /* 배경 (다크) */
-      --card:#0f172a;        /* 카드 배경 */
-      --text:#e5e7eb;        /* 기본 텍스트 */
-      --muted:#9ca3af;       /* 보조 텍스트 */
-      --brand:#2563eb;       /* 브랜드 */
-      --brand-weak:#1e3a8a;  /* 브랜드 보조 */
-      --ring:#60a5fa;        /* 포커스 링 */
-      --line:rgba(255,255,255,.08);
-      --shadow:rgba(0,0,0,.35);
+      --bg:#0b1220; --card:#0f172a; --text:#e5e7eb; --muted:#9ca3af;
+      --brand:#2563eb; --brand-weak:#1e3a8a; --ring:#60a5fa;
+      --line:rgba(255,255,255,.08); --shadow:rgba(0,0,0,.35);
       --tile1:linear-gradient(135deg,#1d4ed8 0%,#22d3ee 100%);
       --tile2:linear-gradient(135deg,#059669 0%,#22c55e 100%);
       --tile3:linear-gradient(135deg,#7c3aed 0%,#06b6d4 100%);
@@ -32,8 +26,7 @@
     }
     @media (prefers-color-scheme: light){
       :root{
-        --bg:#f4f7fb; --card:#ffffff; --text:#111827; --muted:#6b7280; --line:#e5e7eb;
-        --shadow:rgba(0,0,0,.08);
+        --bg:#f4f7fb; --card:#ffffff; --text:#111827; --muted:#6b7280; --line:#e5e7eb; --shadow:rgba(0,0,0,.08);
       }
     }
     *{box-sizing:border-box}
@@ -41,12 +34,22 @@
     body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Pretendard,Apple SD Gothic Neo,Noto Sans KR,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
     a{color:inherit;text-decoration:none}
     .wrap{max-width:1080px;margin:0 auto;padding:24px}
+
+    /* 헤더 */
     header{position:sticky;top:0;background:linear-gradient(180deg,rgba(0,0,0,.22),rgba(0,0,0,0));backdrop-filter:saturate(120%) blur(8px);z-index:10}
     .appbar{display:flex;align-items:center;gap:10px;padding:16px 24px}
-    .logo{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:-0.02em}
+    .logo{display:flex;align-items:center;gap:10px}
     .logo .badge{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:9px;background:#111827;border:1px solid var(--line);box-shadow:0 6px 18px var(--shadow);font-size:18px}
-    .title{font-size:clamp(20px,2.8vw,28px);font-weight:900;margin:10px 0 18px;letter-spacing:-0.02em}
-    .sub{color:var(--muted);font-weight:600}
+
+    /* 설치 버튼 (우측 상단) */
+    .spacer{flex:1}
+    .btn-install{
+      appearance:none;border:1px solid var(--line);background:rgba(255,255,255,.08);
+      color:#fff;font-weight:800;border-radius:10px;padding:8px 12px;cursor:pointer;
+      box-shadow:0 6px 18px var(--shadow);transition:filter .15s ease;
+    }
+    .btn-install:hover{filter:brightness(1.08)}
+    .btn-install.hidden{display:none !important}
 
     /* 그리드 */
     .grid{display:grid;gap:16px;grid-template-columns:repeat(1, minmax(0,1fr));}
@@ -55,8 +58,7 @@
 
     .card{
       position:relative;overflow:hidden;border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 26px var(--shadow);
-      transition:transform .2s ease, box-shadow .2s ease;
-      background:var(--card);
+      transition:transform .2s ease, box-shadow .2s ease;background:var(--card);
     }
     .card:focus-within{outline:none;box-shadow:0 0 0 3px var(--ring), 0 12px 26px var(--shadow)}
     .card:hover{transform:translateY(-2px)}
@@ -66,33 +68,21 @@
     .tile .desc{margin-top:6px;font-size:14px;opacity:.9}
     .tile .go{margin-top:16px;display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border-radius:10px;background:rgba(255,255,255,.14);backdrop-filter:blur(2px);font-weight:800}
     .tile .go:focus{outline:none;box-shadow:0 0 0 3px var(--ring)}
-
-    .t1{background:var(--tile1)}
-    .t2{background:var(--tile2)}
-    .t3{background:var(--tile3)}
-    .t4{background:var(--tile4)}
-
-    .footer{margin-top:26px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    .chips{display:flex;gap:8px;flex-wrap:wrap}
-    .chip{border:1px solid var(--line);background:rgba(255,255,255,.06);padding:6px 10px;border-radius:999px;font-weight:700}
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .t1{background:var(--tile1)} .t2{background:var(--tile2)} .t3{background:var(--tile3)} .t4{background:var(--tile4)}
   </style>
 </head>
 <body>
   <header>
     <div class="appbar wrap">
       <div class="logo" aria-label="세무 계산 앱 런처">
-        <span class="badge">💠</span>
-        <div>
-          <div>세무 계산 앱 런처</div>
-          <div class="sub">4가지 계산 서비스로 빠르게 이동</div>
-        </div>
+        <span class="badge" aria-hidden="true">💠</span>
       </div>
+      <div class="spacer"></div>
+      <button id="btnInstall" class="btn-install hidden" type="button" aria-label="앱 설치">앱설치</button>
     </div>
   </header>
 
   <main class="wrap" role="navigation" aria-label="세무 계산 서비스 목록">
-    <h1 class="title">이동할 계산 서비스를 선택하세요</h1>
     <div class="grid">
       <!-- 1. 개인 부동산 취득세 -->
       <article class="card">
@@ -142,20 +132,9 @@
         </a>
       </article>
     </div>
-
-    <section class="footer" aria-label="부가 정보">
-      <div class="chips" aria-hidden="true">
-        <span class="chip">빠른 실행</span>
-        <span class="chip">모바일 최적화</span>
-        <span class="chip">접근성 고려</span>
-      </div>
-      <div>
-        <span class="muted">ⓒ 2025. 중원구청 워크스페이스</span>
-      </div>
-    </section>
   </main>
 
-  <!-- 키보드 사용자를 위한 접근성 보완: 앵커 포커스가 카드 경계에 보이도록 -->
+  <!-- 키보드 포커스 보완 -->
   <script>
     document.querySelectorAll('.card > a').forEach(a=>{
       a.addEventListener('focus',()=>a.parentElement.classList.add('focus'));
@@ -171,7 +150,67 @@
       });
     }
   </script>
+
+  <!-- ✅ PWA: 앱설치 버튼 동작 -->
+  <script>
+    (function(){
+      const btn = document.getElementById('btnInstall');
+      let deferredPrompt = null;
+
+      function showBtn(v){ btn.classList.toggle('hidden', !v); }
+      function isStandalone(){
+        return window.matchMedia('(display-mode: standalone)').matches
+          || window.matchMedia('(display-mode: window-controls-overlay)').matches
+          || window.navigator.standalone === true;
+      }
+
+      // 설치 가능 이벤트 가로채서 버튼 노출
+      window.addEventListener('beforeinstallprompt', (e)=>{
+        e.preventDefault();
+        deferredPrompt = e;
+        if (!isStandalone()) showBtn(true);
+      });
+
+      // 버튼 클릭 → 설치 프롬프트
+      btn.addEventListener('click', async ()=>{
+        try{
+          if(!deferredPrompt){ return; }
+          const ev = deferredPrompt;
+          deferredPrompt = null; // 중복 방지
+          await ev.prompt();
+          try{
+            const choice = await ev.userChoice;
+            if (choice && choice.outcome === 'accepted') showBtn(false);
+            else showBtn(true); // 거절 시 유지
+          }catch(_){
+            // 일부 브라우저는 userChoice 미지원
+            showBtn(true);
+          }
+        }catch(err){
+          console.error(err);
+          showBtn(true);
+        }
+      });
+
+      // 이미 독립모드인 경우 숨김
+      function refreshByMode(){ showBtn(!isStandalone() && !!deferredPrompt); }
+      try{
+        window.matchMedia('(display-mode: standalone)').addEventListener('change', refreshByMode);
+        window.matchMedia('(display-mode: window-controls-overlay)').addEventListener('change', refreshByMode);
+      }catch(_){}
+
+      // 설치 완료되면 버튼 숨김 & 새로고침 유도 없음(조용히 숨김)
+      window.addEventListener('appinstalled', ()=>{
+        deferredPrompt = null;
+        showBtn(false);
+      });
+
+      // 초기 진입 시 버튼 상태
+      window.addEventListener('load', ()=>{
+        // beforeinstallprompt 이전에는 설치 가능 여부를 알 수 없으므로 기본 숨김
+        showBtn(false);
+      });
+    })();
+  </script>
 </body>
 </html>
-.
-
