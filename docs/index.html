@@ -172,31 +172,49 @@
   </main>
 
   <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').catch(console.error);
-      });
-    }
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').catch(console.error);
+    });
+  }
 
-    (function(){
-      const btn=document.getElementById('btnInstall');
-      let deferredPrompt=null;
-      const showBtn=v=>btn.classList.toggle('hidden',!v);
-      const isStandalone=()=>window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
-      window.addEventListener('beforeinstallprompt',e=>{
-        e.preventDefault();deferredPrompt=e;if(!isStandalone())showBtn(true);
-      });
-      btn.addEventListener('click',async()=>{
-        if(!deferredPrompt)return;
-        const ev=deferredPrompt;deferredPrompt=null;
-        await ev.prompt();const choice=await ev.userChoice;
+  (function(){
+    const btn=document.getElementById('btnInstall');
+    let deferredPrompt=null;
+    const showBtn=v=>btn.classList.toggle('hidden',!v);
+    const isStandalone=()=>window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
+
+    window.addEventListener('beforeinstallprompt',e=>{
+      e.preventDefault();deferredPrompt=e;if(!isStandalone())showBtn(true);
+    });
+
+    // 👇 여기 부분이 수정됨 (아이폰 안내문 추가)
+    btn.addEventListener('click',async()=>{
+      try{
+        // 아이폰은 beforeinstallprompt가 없기 때문에 수동 안내 표시
+        if(!deferredPrompt){
+          alert("📱 iPhone 사용자는 Safari에서 ‘공유하기’ → ‘홈 화면에 추가’를 선택해 설치하세요.");
+          return;
+        }
+        const ev=deferredPrompt;
+        deferredPrompt=null;
+        await ev.prompt();
+        const choice=await ev.userChoice;
         if(choice&&choice.outcome==='accepted')showBtn(false);
-      });
-      window.addEventListener('appinstalled',()=>{deferredPrompt=null;showBtn(false);});
-      window.addEventListener('load',()=>showBtn(false));
-    })();
-  </script>
+        else showBtn(true);
+      }catch(err){
+        console.error(err);
+        showBtn(true);
+      }
+    });
+    // 👆 여기까지 추가 및 수정됨
+
+    window.addEventListener('appinstalled',()=>{deferredPrompt=null;showBtn(false);});
+    window.addEventListener('load',()=>showBtn(false));
+  })();
+</script>
 </body>
 </html>
+
 
 
