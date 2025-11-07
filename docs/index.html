@@ -51,7 +51,43 @@
     .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
     .card{border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 26px var(--shadow);transition:transform .2s;background:var(--card)}
     .card:hover{transform:translateY(-2px)}
-    .tile{display:flex;flex-direction:column;justify-content:space-between;min-height:160px;padding:18px;color:#fff;border-radius:16px}
+    .tile{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  min-height:160px;
+  padding:18px;
+  color:#fff;
+  border-radius:16px;
+}
+
+.tile div:first-child {
+  font-size:20px;     /* 아이콘 바로 옆/위 텍스트 약 1단계 확대 */
+}
+
+.tile .name, .tile div > div:first-child {
+  font-size:20px;     /* 제목 */
+  font-weight:950;    /* 더 굵게 */
+}
+
+.tile .desc, .tile div > div:last-child {
+  font-size:16px;     /* 부제목 */
+  font-weight:600;    /* 조금 굵게 */
+  opacity:.95;
+}
+
+.tile .go{
+  margin-top:18px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:10px;
+  background:rgba(255,255,255,.18);
+  backdrop-filter:blur(3px);
+  font-weight:900;
+  font-size:15px;
+}
     .t1{background:var(--tile1)}.t2{background:var(--tile2)}.t3{background:var(--tile3)}.t4{background:var(--tile4)}
 
     /* 빠른링크 */
@@ -148,6 +184,7 @@
   </script>
 </body>
 </html>
+
 
 
 
