@@ -1,4 +1,4 @@
-/* sw.js — 세무 계산 앱 런처 PWA 서비스워커 */
+/* sw.js — 지방세 계산 PWA 서비스워커 */
 const CACHE_NAME = "tax-launcher-v1";
 const APP_SHELL = [
   "./",
