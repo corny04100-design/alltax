@@ -48,7 +48,7 @@
     .spacer{flex:1}
     .btn-install{
       appearance:none;border:1px solid var(--line);background:rgba(255,255,255,.08);
-      color:#fff;font-weight:800;border-radius:10px;padding:8px 12px;cursor:pointer;
+      color:#000;font-weight:800;border-radius:10px;padding:8px 12px;cursor:pointer;
       box-shadow:0 6px 18px var(--shadow);transition:filter .15s ease;
     }
     .btn-install:hover{filter:brightness(1.08)}
@@ -86,22 +86,23 @@
       padding:8px 12px;border-radius:999px;border:1px solid var(--chip-border);
       font-weight:800;white-space:nowrap;
       transition:filter .15s ease;
+      color:#000;
     }
     .quick-links a:hover{filter:brightness(1.05)}
-    .quick-links .label{font-weight:900;opacity:.9;margin-right:6px}
+    .quick-links .label{font-weight:900;opacity:.9;margin-right:6px;color:#000}
 
     /* 각 버튼별 파스텔 배경 */
-    .link.law      {background:rgba(59,130,246,.15);color:#93c5fd;}     /* 파란 */
-    .link.wetax    {background:rgba(34,197,94,.15);color:#86efac;}     /* 초록 */
-    .link.value    {background:rgba(234,179,8,.15);color:#fde047;}     /* 노랑 */
-    .link.house    {background:rgba(168,85,247,.15);color:#d8b4fe;}    /* 보라 */
-    .link.appraised{background:rgba(239,68,68,.15);color:#fca5a5;}     /* 빨강 */
+    .link.law      {background:rgba(59,130,246,.15);}     /* 파란 */
+    .link.wetax    {background:rgba(34,197,94,.15);}      /* 초록 */
+    .link.value    {background:rgba(234,179,8,.15);}      /* 노랑 */
+    .link.house    {background:rgba(168,85,247,.15);}     /* 보라 */
+    .link.appraised{background:rgba(239,68,68,.15);}      /* 빨강 */
   </style>
 </head>
 <body>
   <header>
     <div class="appbar wrap">
-      <div class="logo" aria-label="세무 계산 앱 런처">
+      <div class="logo" aria-label="지방세 계산 앱 런처">
         <span class="badge" aria-hidden="true">💠</span>
       </div>
       <div class="spacer"></div>
@@ -111,7 +112,6 @@
 
   <main class="wrap" role="navigation" aria-label="세무 계산 서비스 목록">
     <div class="grid">
-      <!-- 1. 개인 부동산 취득세 -->
       <article class="card">
         <a class="tile t1" href="https://corny04100-design.github.io/acquisition2025/" target="_blank" rel="noopener">
           <span class="icon" aria-hidden="true">🏠</span>
@@ -119,43 +119,40 @@
             <div class="name">개인 부동산 취득세</div>
             <div class="desc">주택·상가 매매/상속/증여 취득세 계산</div>
           </div>
-          <span class="go" aria-label="개인 부동산 취득세 계산기로 이동(새 창)">바로가기 ↗</span>
+          <span class="go">바로가기 ↗</span>
         </a>
       </article>
 
-      <!-- 2. 재산세 공동주택 -->
       <article class="card">
         <a class="tile t2" href="https://corny04100-design.github.io/property2025/" target="_blank" rel="noopener">
-          <span class="icon" aria-hidden="true">🏢</span>
+          <span class="icon">🏢</span>
           <div>
             <div class="name">재산세 – 공동주택</div>
             <div class="desc">공동주택(아파트·연립·다세대) 재산세</div>
           </div>
-          <span class="go" aria-label="재산세 공동주택 계산기로 이동(새 창)">바로가기 ↗</span>
+          <span class="go">바로가기 ↗</span>
         </a>
       </article>
 
-      <!-- 3. 재산세 토지 -->
       <article class="card">
         <a class="tile t3" href="https://corny04100-design.github.io/property2025_land/" target="_blank" rel="noopener">
-          <span class="icon" aria-hidden="true">🗺️</span>
+          <span class="icon">🗺️</span>
           <div>
             <div class="name">재산세 – 토지</div>
             <div class="desc">종합합산/별도합산/분리과세 토지 재산세</div>
           </div>
-          <span class="go" aria-label="재산세 토지 계산기로 이동(새 창)">바로가기 ↗</span>
+          <span class="go">바로가기 ↗</span>
         </a>
       </article>
 
-      <!-- 4. 지역자원시설세 -->
       <article class="card">
         <a class="tile t4" href="https://corny04100-design.github.io/JJS2025/" target="_blank" rel="noopener">
-          <span class="icon" aria-hidden="true">🏗️</span>
+          <span class="icon">🏗️</span>
           <div>
             <div class="name">지역자원시설세</div>
             <div class="desc">지하수 등 자원시설세</div>
           </div>
-          <span class="go" aria-label="지역자원시설세 계산기로 이동(새 창)">바로가기 ↗</span>
+          <span class="go">바로가기 ↗</span>
         </a>
       </article>
     </div>
@@ -163,72 +160,40 @@
     <!-- ▶ 메뉴 하단 바로가기 링크 -->
     <nav class="quick-links" aria-label="관련 사이트 바로가기">
       <div class="row">
-        <span class="label" aria-hidden="true">바로가기</span>
-        <a class="link law" href="https://www.law.go.kr/LSW/lsSc.do?query=%EC%A7%80%EB%B0%A9%EC%84%B8%EB%B2%95" target="_blank" rel="noopener" aria-label="지방세법 (새 창)">지방세법</a>
-        <a class="link wetax" href="https://www.wetax.go.kr/etq/etp/epi/E070101M01.do" target="_blank" rel="noopener" aria-label="위택스 (새 창)">위택스</a>
-        <a class="link value" href="https://www.wetax.go.kr/tcp/loi/J030401M01.do" target="_blank" rel="noopener" aria-label="시가표준액 (새 창)">시가표준액</a>
-        <a class="link house" href="https://www.realtyprice.kr/notice/main/mainBody.htm" target="_blank" rel="noopener" aria-label="주택가격 (새 창)">주택가격</a>
-        <a class="link appraised" href="https://www.wetax.go.kr/tcp/loi/J030901M01.do" target="_blank" rel="noopener" aria-label="시가인정액 (새 창)">시가인정액</a>
+        <span class="label">바로가기</span>
+        <a class="link law" href="https://www.law.go.kr/LSW/lsSc.do?query=%EC%A7%80%EB%B0%A9%EC%84%B8%EB%B2%95" target="_blank" rel="noopener">지방세법</a>
+        <a class="link wetax" href="https://www.wetax.go.kr/etq/etp/epi/E070101M01.do" target="_blank" rel="noopener">위택스</a>
+        <a class="link value" href="https://www.wetax.go.kr/tcp/loi/J030401M01.do" target="_blank" rel="noopener">시가표준액</a>
+        <a class="link house" href="https://www.realtyprice.kr/notice/main/mainBody.htm" target="_blank" rel="noopener">주택가격</a>
+        <a class="link appraised" href="https://www.wetax.go.kr/tcp/loi/J030901M01.do" target="_blank" rel="noopener">시가인정액</a>
       </div>
     </nav>
   </main>
 
-  <!-- 키보드 포커스 보완 -->
-  <script>
-    document.querySelectorAll('.card > a').forEach(a=>{
-      a.addEventListener('focus',()=>a.parentElement.classList.add('focus'));
-      a.addEventListener('blur',()=>a.parentElement.classList.remove('focus'));
-    });
-  </script>
-
-  <!-- ✅ PWA: 서비스워커 등록 -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js').catch(console.error);
       });
     }
-  </script>
 
-  <!-- ✅ PWA: 앱설치 버튼 동작 -->
-  <script>
     (function(){
-      const btn = document.getElementById('btnInstall');
-      let deferredPrompt = null;
-
-      function showBtn(v){ btn.classList.toggle('hidden', !v); }
-      function isStandalone(){
-        return window.matchMedia('(display-mode: standalone)').matches
-          || window.matchMedia('(display-mode: window-controls-overlay)').matches
-          || window.navigator.standalone === true;
-      }
-
-      window.addEventListener('beforeinstallprompt', (e)=>{
-        e.preventDefault();
-        deferredPrompt = e;
-        if (!isStandalone()) showBtn(true);
+      const btn=document.getElementById('btnInstall');
+      let deferredPrompt=null;
+      const showBtn=v=>btn.classList.toggle('hidden',!v);
+      const isStandalone=()=>window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
+      window.addEventListener('beforeinstallprompt',e=>{
+        e.preventDefault();deferredPrompt=e;if(!isStandalone())showBtn(true);
       });
-
-      btn.addEventListener('click', async ()=>{
-        try{
-          if(!deferredPrompt){ return; }
-          const ev = deferredPrompt;
-          deferredPrompt = null;
-          await ev.prompt();
-          const choice = await ev.userChoice;
-          if (choice && choice.outcome === 'accepted') showBtn(false);
-          else showBtn(true);
-        }catch(err){ console.error(err); showBtn(true); }
+      btn.addEventListener('click',async()=>{
+        if(!deferredPrompt)return;
+        const ev=deferredPrompt;deferredPrompt=null;
+        await ev.prompt();const choice=await ev.userChoice;
+        if(choice&&choice.outcome==='accepted')showBtn(false);
       });
-
-      window.addEventListener('appinstalled', ()=>{
-        deferredPrompt = null;
-        showBtn(false);
-      });
-
-      window.addEventListener('load', ()=>showBtn(false));
+      window.addEventListener('appinstalled',()=>{deferredPrompt=null;showBtn(false);});
+      window.addEventListener('load',()=>showBtn(false));
     })();
   </script>
 </body>
 </html>
-.
