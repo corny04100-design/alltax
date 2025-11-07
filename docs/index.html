@@ -32,6 +32,7 @@
       --ql-land-bg:#e0f2fe; --ql-land-br:#b9e6ff;
     }
     body{margin:0;font-family:Pretendard,system-ui,-apple-system,Segoe UI,Roboto,Noto Sans KR,sans-serif;background:var(--bg);color:var(--text)}
+    a, .tile a, .quick-links a, .go { text-decoration:none !important; } /* ✅ 밑줄 완전 제거 */
     .wrap{max-width:1080px;margin:0 auto;padding:24px}
     header{position:sticky;top:0;background:linear-gradient(180deg,rgba(0,0,0,.22),rgba(0,0,0,0));backdrop-filter:saturate(120%) blur(8px);z-index:10}
     .appbar{display:flex;align-items:center;gap:10px;padding:16px 24px}
@@ -52,12 +53,7 @@
     .t1{background:var(--tile1)}.t2{background:var(--tile2)}.t3{background:var(--tile3)}.t4{background:var(--tile4)}
     .quick-links{margin-top:18px;padding:12px;border:1px solid var(--ql-border);background:var(--ql-bg);border-radius:12px}
     .quick-links .row{display:flex;gap:8px;align-items:center;overflow:auto;white-space:nowrap}
-    .quick-links .label{
-      font-weight:800;color:var(--ql-text);
-      padding:5px 7px;font-size:16px;
-      border:1px solid #dbe0ff;border-radius:8px;
-      background:none; /* ✅ 배경 제거 */
-    }
+    .quick-links .label{font-weight:800;color:var(--ql-text);padding:5px 7px;font-size:16px;border:1px solid #dbe0ff;border-radius:8px;background:none;}
     .quick-links a{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid var(--ql-border);font-weight:700;white-space:nowrap;font-size:14.8px;color:var(--ql-text);}
     .link.law{background:var(--ql-law-bg);border-color:var(--ql-law-br);}
     .link.wetax{background:var(--ql-wetax-bg);border-color:var(--ql-wetax-br);}
