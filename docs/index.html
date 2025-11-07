@@ -21,7 +21,7 @@
       --shadow:rgba(0,0,0,.35);
       --tile1:linear-gradient(135deg,#1d4ed8 0%,#22d3ee 100%);
       --tile2:linear-gradient(135deg,#059669 0%,#22c55e 100%);
-      --tile3:linear-gradient(135deg,#facc15 0%,#f97316 100%);
+      --tile3:linear-gradient(135deg,#facc15 0%,#f97316 100%); /* 노란계열 */
       --tile4:linear-gradient(135deg,#ea580c 0%,#f59e0b 100%);
       --ql-bg:#ffffff; --ql-border:#dbe3ee; --ql-text:#0f172a;
       --ql-law-bg:#e8f1ff; --ql-law-br:#c7dbff;
@@ -32,7 +32,7 @@
       --ql-land-bg:#e0f2fe; --ql-land-br:#b9e6ff;
     }
     body{margin:0;font-family:Pretendard,system-ui,-apple-system,Segoe UI,Roboto,Noto Sans KR,sans-serif;background:var(--bg);color:var(--text)}
-    a, .tile a, .quick-links a, .go { text-decoration:none !important; } /* ✅ 밑줄 완전 제거 */
+    a, .tile a, .quick-links a, .go { text-decoration:none !important; }
     .wrap{max-width:1080px;margin:0 auto;padding:24px}
     header{position:sticky;top:0;background:linear-gradient(180deg,rgba(0,0,0,.22),rgba(0,0,0,0));backdrop-filter:saturate(120%) blur(8px);z-index:10}
     .appbar{display:flex;align-items:center;gap:10px;padding:16px 24px}
@@ -46,7 +46,13 @@
     .card{border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 26px var(--shadow);transition:transform .2s;background:var(--card)}
     .card:hover{transform:translateY(-2px)}
     .tile{display:flex;flex-direction:column;justify-content:space-between;min-height:160px;padding:18px;color:#fff;border-radius:16px}
-    .tile .icon{font-family:"Noto Color Emoji","Segoe UI Emoji","Apple Color Emoji",sans-serif;font-size:44px;line-height:1;display:inline-block;margin-bottom:6px;}
+    .tile .icon{
+      font-family:"Noto Color Emoji","Segoe UI Emoji","Apple Color Emoji",sans-serif;
+      font-size:31px;   /* ✅ 30% 축소 */
+      line-height:1;
+      display:inline-block;
+      margin-bottom:6px;
+    }
     .tile .name{font-size:20px;font-weight:950;}
     .tile .desc{font-size:16px;font-weight:600;opacity:.95;}
     .tile .go{margin-top:18px;display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.18);backdrop-filter:blur(3px);font-weight:900;font-size:15px;font-family:"Segoe UI","Roboto","Helvetica Neue",Arial,sans-serif;letter-spacing:.3px;}
@@ -118,4 +124,3 @@
   </script>
 </body>
 </html>
-
