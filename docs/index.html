@@ -24,26 +24,23 @@
       --tile3:linear-gradient(135deg,#7c3aed 0%,#06b6d4 100%);
       --tile4:linear-gradient(135deg,#ea580c 0%,#f59e0b 100%);
 
-      /* Quick Links - 고가시성(다크테마에서도 밝은 배경 + 진한 글씨) */
+      /* Quick Links - 고가시성 */
       --ql-bg:#ffffff;
       --ql-border:#dbe3ee;
       --ql-text:#0f172a;
 
-      /* Quick Link 버튼별 배경/테두리 */
+      /* 버튼별 배경/테두리 */
       --ql-law-bg:#e8f1ff;      --ql-law-br:#c7dbff;
       --ql-wetax-bg:#eafbf1;    --ql-wetax-br:#cdeedd;
       --ql-value-bg:#fff6d6;    --ql-value-br:#ffe5a3;
       --ql-house-bg:#f3e8ff;    --ql-house-br:#e3caff;
       --ql-app-bg:#ffe8e8;      --ql-app-br:#ffc8c8;
+      --ql-land-bg:#e0f2fe;     --ql-land-br:#b9e6ff; /* ▶ 토지공시지가(하늘색) */
     }
     @media (prefers-color-scheme: light){
       :root{
         --bg:#f4f7fb; --card:#ffffff; --text:#111827; --muted:#6b7280; --line:#e5e7eb; --shadow:rgba(0,0,0,.08);
-
-        /* 라이트에서도 동일한 밝은 톤 유지 */
-        --ql-bg:#ffffff;
-        --ql-border:#e5e7eb;
-        --ql-text:#0f172a;
+        --ql-bg:#ffffff; --ql-border:#e5e7eb; --ql-text:#0f172a;
       }
     }
     *{box-sizing:border-box}
@@ -88,17 +85,21 @@
     .tile .go:focus{outline:none;box-shadow:0 0 0 3px var(--ring)}
     .t1{background:var(--tile1)} .t2{background:var(--tile2)} .t3{background:var(--tile3)} .t4{background:var(--tile4)}
 
-    /* ▶ 하단 빠른링크(가로 메뉴) - 고가시성 */
+    /* ▶ 하단 빠른링크(한 줄 유지 + 가로 스크롤) */
     .quick-links{
       margin-top:18px;padding:14px;border:1px solid var(--ql-border);
-      background:var(--ql-bg);border-radius:12px;
-      box-shadow:0 6px 18px rgba(0,0,0,.06);
+      background:var(--ql-bg);border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.06);
     }
     .quick-links .row{
-      display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+      display:flex;gap:10px;align-items:center;flex-wrap:nowrap;
+      overflow:auto;white-space:nowrap;padding-bottom:2px; /* 모바일에서 가로 스크롤 허용 */
     }
+    .quick-links .row > *{flex:0 0 auto} /* 줄바꿈 방지 */
+    .quick-links .row::-webkit-scrollbar{height:6px}
+    .quick-links .row::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:999px}
+
     .quick-links .label{
-      font-weight:900;opacity:1;margin-right:6px;color:var(--ql-text);
+      font-weight:900;margin-right:6px;color:var(--ql-text);
       padding:6px 8px;border-radius:8px;background:#eef2ff;border:1px solid #dbe0ff;
     }
     .quick-links a{
@@ -115,13 +116,11 @@
     .link.value    {background:var(--ql-value-bg);    border-color:var(--ql-value-br);}
     .link.house    {background:var(--ql-house-bg);    border-color:var(--ql-house-br);}
     .link.appraised{background:var(--ql-app-bg);      border-color:var(--ql-app-br);}
+    .link.land     {background:var(--ql-land-bg);     border-color:var(--ql-land-br);} /* ▶ 토지공시지가 */
 
     /* 호버 시 약간 진하게 */
-    .link.law:hover      {filter:brightness(0.98)}
-    .link.wetax:hover    {filter:brightness(0.98)}
-    .link.value:hover    {filter:brightness(0.98)}
-    .link.house:hover    {filter:brightness(0.98)}
-    .link.appraised:hover{filter:brightness(0.98)}
+    .link.law:hover,.link.wetax:hover,.link.value:hover,
+    .link.house:hover,.link.appraised:hover,.link.land:hover{filter:brightness(0.98)}
   </style>
 </head>
 <body>
@@ -183,15 +182,17 @@
       </article>
     </div>
 
-    <!-- ▶ 메뉴 하단 바로가기 링크 -->
+    <!-- ▶ 메뉴 하단 바로가기 링크 (줄바꿈 없이 가로 스크롤) -->
     <nav class="quick-links" aria-label="관련 사이트 바로가기">
       <div class="row">
         <span class="label">바로가기</span>
-        <a class="link law" href="https://www.law.go.kr/LSW/lsSc.do?query=%EC%A7%80%EB%B0%A9%EC%84%B8%EB%B2%95" target="_blank" rel="noopener">지방세법</a>
-        <a class="link wetax" href="https://www.wetax.go.kr/etq/etp/epi/E070101M01.do" target="_blank" rel="noopener">위택스</a>
-        <a class="link value" href="https://www.wetax.go.kr/tcp/loi/J030401M01.do" target="_blank" rel="noopener">시가표준액</a>
-        <a class="link house" href="https://www.realtyprice.kr/notice/main/mainBody.htm" target="_blank" rel="noopener">주택가격</a>
-        <a class="link appraised" href="https://www.wetax.go.kr/tcp/loi/J030901M01.do" target="_blank" rel="noopener">시가인정액</a>
+        <a class="link law"      href="https://www.law.go.kr/LSW/lsSc.do?query=%EC%A7%80%EB%B0%A9%EC%84%B8%EB%B2%95" target="_blank" rel="noopener">지방세법</a>
+        <a class="link wetax"    href="https://www.wetax.go.kr/etq/etp/epi/E070101M01.do" target="_blank" rel="noopener">위택스</a>
+        <a class="link value"    href="https://www.wetax.go.kr/tcp/loi/J030401M01.do" target="_blank" rel="noopener">시가표준액</a>
+        <a class="link house"    href="https://www.realtyprice.kr/notice/main/mainBody.htm" target="_blank" rel="noopener">주택가격</a>
+        <a class="link appraised"href="https://www.wetax.go.kr/tcp/loi/J030901M01.do" target="_blank" rel="noopener">시가인정액</a>
+        <!-- ▶ 추가: 토지공시지가 -->
+        <a class="link land"     href="https://www.realtyprice.kr" target="_blank" rel="noopener">토지공시지가</a>
       </div>
     </nav>
   </main>
