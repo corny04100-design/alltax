@@ -6,6 +6,14 @@
   <title>세무 계산 앱 런처</title>
   <meta name="theme-color" content="#2563eb" />
   <meta name="description" content="개인 부동산 취득세, 재산세(공동주택/토지), 지역자원시설세 계산 서비스로 이동" />
+
+  <!-- ✅ PWA: 메니페스트 + 아이콘 -->
+  <link rel="manifest" href="manifest.webmanifest?v=20251107">
+  <link rel="icon" href="icon-192-지방세.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="icon-512-지방세.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
   <style>
     :root{
       --bg:#0b1220;          /* 배경 (다크) */
@@ -116,7 +124,7 @@
           <span class="icon" aria-hidden="true">🗺️</span>
           <div>
             <div class="name">재산세 – 토지</div>
-            <div class="desc">분리과세/종합합산/별도합산 토지 재산세</div>
+            <div class="desc">종합합산/별도합산/분리과세 토지 재산세</div>
           </div>
           <span class="go" aria-label="재산세 토지 계산기로 이동(새 창)">바로가기 ↗</span>
         </a>
@@ -128,7 +136,7 @@
           <span class="icon" aria-hidden="true">🏗️</span>
           <div>
             <div class="name">지역자원시설세</div>
-            <div class="desc">건축물·오락장·지하수 등 자원시설세</div>
+            <div class="desc">지하수 등 자원시설세</div>
           </div>
           <span class="go" aria-label="지역자원시설세 계산기로 이동(새 창)">바로가기 ↗</span>
         </a>
@@ -154,5 +162,15 @@
       a.addEventListener('blur',()=>a.parentElement.classList.remove('focus'));
     });
   </script>
+
+  <!-- ✅ PWA: 서비스워커 등록 -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(console.error);
+      });
+    }
+  </script>
 </body>
 </html>
+.
