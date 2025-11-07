@@ -12,35 +12,27 @@
   <link rel="apple-touch-icon" href="icon-512-v1.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-  <!-- 안전한 컬러 이모지 폰트 로드 -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#0b1220; --card:#0f172a; --text:#e5e7eb; --muted:#9ca3af;
-      --brand:#2563eb; --ring:#60a5fa; --line:rgba(255,255,255,.08); --shadow:rgba(0,0,0,.35);
+      --bg:#0b1220; --card:#0f172a; --text:#e5e7eb;
+      --brand:#2563eb; --ring:#60a5fa; --line:rgba(255,255,255,.08);
+      --shadow:rgba(0,0,0,.35);
       --tile1:linear-gradient(135deg,#1d4ed8 0%,#22d3ee 100%);
       --tile2:linear-gradient(135deg,#059669 0%,#22c55e 100%);
       --tile3:linear-gradient(135deg,#7c3aed 0%,#06b6d4 100%);
       --tile4:linear-gradient(135deg,#ea580c 0%,#f59e0b 100%);
-
-      /* Quick Links */
       --ql-bg:#ffffff; --ql-border:#dbe3ee; --ql-text:#0f172a;
-      --ql-law-bg:#e8f1ff;      --ql-law-br:#c7dbff;
-      --ql-wetax-bg:#eafbf1;    --ql-wetax-br:#cdeedd;
-      --ql-value-bg:#fff6d6;    --ql-value-br:#ffe5a3;
-      --ql-house-bg:#f3e8ff;    --ql-house-br:#e3caff;
-      --ql-app-bg:#ffe8e8;      --ql-app-br:#ffc8c8;
-      --ql-land-bg:#e0f2fe;     --ql-land-br:#b9e6ff;
-    }
-    @media (prefers-color-scheme: light){
-      :root{--bg:#f4f7fb; --card:#fff; --text:#111827; --line:#e5e7eb; --ql-bg:#fff; --ql-border:#e5e7eb;}
+      --ql-law-bg:#e8f1ff; --ql-law-br:#c7dbff;
+      --ql-wetax-bg:#eafbf1; --ql-wetax-br:#cdeedd;
+      --ql-value-bg:#fff6d6; --ql-value-br:#ffe5a3;
+      --ql-house-bg:#f3e8ff; --ql-house-br:#e3caff;
+      --ql-app-bg:#ffe8e8; --ql-app-br:#ffc8c8;
+      --ql-land-bg:#e0f2fe; --ql-land-br:#b9e6ff;
     }
     body{margin:0;font-family:Pretendard,system-ui,-apple-system,Segoe UI,Roboto,Noto Sans KR,sans-serif;background:var(--bg);color:var(--text)}
-    a{text-decoration:none;color:inherit}
     .wrap{max-width:1080px;margin:0 auto;padding:24px}
-
     header{position:sticky;top:0;background:linear-gradient(180deg,rgba(0,0,0,.22),rgba(0,0,0,0));backdrop-filter:saturate(120%) blur(8px);z-index:10}
     .appbar{display:flex;align-items:center;gap:10px;padding:16px 24px}
     .logo{display:flex;align-items:center;gap:10px}
@@ -49,46 +41,24 @@
     .spacer{flex:1}
     .btn-install{appearance:none;border:1px solid var(--line);background:rgba(255,255,255,.9);color:#000;font-weight:800;border-radius:10px;padding:8px 12px;cursor:pointer;box-shadow:0 6px 18px var(--shadow);}
     .btn-install.hidden{display:none}
-
     .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
     .card{border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 26px var(--shadow);transition:transform .2s;background:var(--card)}
     .card:hover{transform:translateY(-2px)}
-    .tile{
-      display:flex;flex-direction:column;justify-content:space-between;
-      min-height:160px;padding:18px;color:#fff;border-radius:16px
-    }
-    /* 안전 이모지: 크기 크게 + 전용 폰트 */
-    .tile .icon{
-      font-family:"Noto Color Emoji","Segoe UI Emoji","Apple Color Emoji",sans-serif;
-      font-size:27px; line-height:1;
-      display:inline-block; margin-bottom:6px;
-    }
-
-    .tile div:first-child { font-size:20px; }
-    .tile .name, .tile div > div:first-child { font-size:20px; font-weight:950; }
-    .tile .desc, .tile div > div:last-child { font-size:16px; font-weight:600; opacity:.95; }
-
-    .tile .go{
-      margin-top:18px;display:inline-flex;align-items:center;gap:8px;
-      padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.18);
-      backdrop-filter:blur(3px);font-weight:900;font-size:15px;
-      font-family:"Segoe UI","Roboto","Helvetica Neue",Arial,sans-serif; /* 제목과 다른 서체 */
-      letter-spacing:.3px;
-    }
+    .tile{display:flex;flex-direction:column;justify-content:space-between;min-height:160px;padding:18px;color:#fff;border-radius:16px}
+    .tile .icon{font-family:"Noto Color Emoji","Segoe UI Emoji","Apple Color Emoji",sans-serif;font-size:44px;line-height:1;display:inline-block;margin-bottom:6px;}
+    .tile .name{font-size:20px;font-weight:950;}
+    .tile .desc{font-size:16px;font-weight:600;opacity:.95;}
+    .tile .go{margin-top:18px;display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.18);backdrop-filter:blur(3px);font-weight:900;font-size:15px;font-family:"Segoe UI","Roboto","Helvetica Neue",Arial,sans-serif;letter-spacing:.3px;}
     .t1{background:var(--tile1)}.t2{background:var(--tile2)}.t3{background:var(--tile3)}.t4{background:var(--tile4)}
-
-    /* 빠른링크 */
     .quick-links{margin-top:18px;padding:12px;border:1px solid var(--ql-border);background:var(--ql-bg);border-radius:12px}
     .quick-links .row{display:flex;gap:8px;align-items:center;overflow:auto;white-space:nowrap}
     .quick-links .label{
       font-weight:800;color:var(--ql-text);
-      padding:5px 7px;font-size:16px;background:#eef2ff;border:1px solid #dbe0ff;border-radius:8px;
+      padding:5px 7px;font-size:16px;
+      border:1px solid #dbe0ff;border-radius:8px;
+      background:none; /* ✅ 배경 제거 */
     }
-    .quick-links a{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:8px 12px;border-radius:999px;border:1px solid var(--ql-border);
-      font-weight:700;white-space:nowrap;font-size:14.8px;color:var(--ql-text);
-    }
+    .quick-links a{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid var(--ql-border);font-weight:700;white-space:nowrap;font-size:14.8px;color:var(--ql-text);}
     .link.law{background:var(--ql-law-bg);border-color:var(--ql-law-br);}
     .link.wetax{background:var(--ql-wetax-bg);border-color:var(--ql-wetax-br);}
     .link.value{background:var(--ql-value-bg);border-color:var(--ql-value-br);}
@@ -111,61 +81,21 @@
 
   <main class="wrap">
     <div class="grid">
-      <article class="card">
-        <a class="tile t1" href="https://corny04100-design.github.io/acquisition2025/" target="_blank" rel="noopener">
-          <span class="icon" aria-hidden="true">🏡</span>
-          <div>
-            <div class="name">개인 부동산 취득세</div>
-            <div class="desc">주택·상가 매매/상속/증여</div>
-          </div>
-          <span class="go">바로가기 ↗</span>
-        </a>
-      </article>
-
-      <article class="card">
-        <a class="tile t2" href="https://corny04100-design.github.io/property2025/" target="_blank" rel="noopener">
-          <span class="icon" aria-hidden="true">🏬</span>
-          <div>
-            <div class="name">재산세 – 공동주택</div>
-            <div class="desc">공동주택(아파트·연립·다세대)</div>
-          </div>
-          <span class="go">바로가기 ↗</span>
-        </a>
-      </article>
-
-      <article class="card">
-        <a class="tile t3" href="https://corny04100-design.github.io/property2025_land/" target="_blank" rel="noopener">
-          <span class="icon" aria-hidden="true">🌏</span>
-          <div>
-            <div class="name">재산세 – 토지</div>
-            <div class="desc">종합합산/별도합산/분리과세</div>
-          </div>
-          <span class="go">바로가기 ↗</span>
-        </a>
-      </article>
-
-      <article class="card">
-        <a class="tile t4" href="https://corny04100-design.github.io/JJS2025/" target="_blank" rel="noopener">
-          <span class="icon" aria-hidden="true">🧱</span>
-          <div>
-            <div class="name">지역자원시설세</div>
-            <div class="desc">지하수 사용 등 지역자원시설세</div>
-          </div>
-          <span class="go">바로가기 ↗</span>
-        </a>
-      </article>
+      <article class="card"><a class="tile t1" href="https://corny04100-design.github.io/acquisition2025/" target="_blank"><span class="icon">🏡</span><div><div class="name">개인 부동산 취득세</div><div class="desc">주택·상가 매매/상속/증여</div></div><span class="go">바로가기 ↗</span></a></article>
+      <article class="card"><a class="tile t2" href="https://corny04100-design.github.io/property2025/" target="_blank"><span class="icon">🏬</span><div><div class="name">재산세 – 공동주택</div><div class="desc">공동주택(아파트·연립·다세대)</div></div><span class="go">바로가기 ↗</span></a></article>
+      <article class="card"><a class="tile t3" href="https://corny04100-design.github.io/property2025_land/" target="_blank"><span class="icon">🌏</span><div><div class="name">재산세 – 토지</div><div class="desc">종합합산/별도합산/분리과세</div></div><span class="go">바로가기 ↗</span></a></article>
+      <article class="card"><a class="tile t4" href="https://corny04100-design.github.io/JJS2025/" target="_blank"><span class="icon">🧱</span><div><div class="name">지역자원시설세</div><div class="desc">지하수 사용 등 지역자원시설세</div></div><span class="go">바로가기 ↗</span></a></article>
     </div>
 
-    <!-- ▶ 메뉴 하단 바로가기 -->
-    <nav class="quick-links" aria-label="관련 사이트 바로가기">
+    <nav class="quick-links">
       <div class="row">
         <span class="label">바로가기</span>
-        <a class="link law" href="https://www.law.go.kr/LSW/lsSc.do?query=%EC%A7%80%EB%B0%A9%EC%84%B8%EB%B2%95" target="_blank" rel="noopener">지방세법</a>
-        <a class="link wetax" href="https://www.wetax.go.kr/etq/etp/epi/E070101M01.do" target="_blank" rel="noopener">위택스</a>
-        <a class="link value" href="https://www.wetax.go.kr/tcp/loi/J030401M01.do" target="_blank" rel="noopener">시가표준액</a>
-        <a class="link house" href="https://www.realtyprice.kr/notice/main/mainBody.htm" target="_blank" rel="noopener">주택가격</a>
-        <a class="link appraised" href="https://www.wetax.go.kr/tcp/loi/J030901M01.do" target="_blank" rel="noopener">시가인정액</a>
-        <a class="link land" href="https://www.realtyprice.kr" target="_blank" rel="noopener">토지공시지가</a>
+        <a class="link law" href="https://www.law.go.kr/LSW/lsSc.do?query=%EC%A7%80%EB%B0%A9%EC%84%B8%EB%B2%95" target="_blank">지방세법</a>
+        <a class="link wetax" href="https://www.wetax.go.kr/etq/etp/epi/E070101M01.do" target="_blank">위택스</a>
+        <a class="link value" href="https://www.wetax.go.kr/tcp/loi/J030401M01.do" target="_blank">시가표준액</a>
+        <a class="link house" href="https://www.realtyprice.kr/notice/main/mainBody.htm" target="_blank">주택가격</a>
+        <a class="link appraised" href="https://www.wetax.go.kr/tcp/loi/J030901M01.do" target="_blank">시가인정액</a>
+        <a class="link land" href="https://www.realtyprice.kr" target="_blank">토지공시지가</a>
       </div>
     </nav>
   </main>
@@ -176,35 +106,19 @@
       navigator.serviceWorker.register('./sw.js').catch(console.error);
     });
   }
-
   (function(){
     const btn=document.getElementById('btnInstall');
     let deferredPrompt=null;
     const showBtn=v=>btn.classList.toggle('hidden',!v);
     const isStandalone=()=>window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
-
-    window.addEventListener('beforeinstallprompt',e=>{
-      e.preventDefault();deferredPrompt=e;if(!isStandalone())showBtn(true);
-    });
+    window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;if(!isStandalone())showBtn(true);});
     btn.addEventListener('click',async()=>{
-      try{
-        if(!deferredPrompt){
-          alert("📱 iPhone 사용자는 Safari에서 ‘공유하기’ → ‘홈 화면에 추가’를 눌러 설치하세요.");
-          return;
-        }
-        const ev=deferredPrompt;
-        deferredPrompt=null;
-        await ev.prompt();
-        const choice=await ev.userChoice;
-        if(choice&&choice.outcome==='accepted')showBtn(false);
-        else showBtn(true);
-      }catch(err){console.error(err);showBtn(true);}
+      if(!deferredPrompt){alert("📱 iPhone 사용자는 Safari에서 ‘공유하기’ → ‘홈 화면에 추가’를 눌러 설치하세요.");return;}
+      const ev=deferredPrompt;deferredPrompt=null;
+      await ev.prompt();const choice=await ev.userChoice;if(choice&&choice.outcome==='accepted')showBtn(false);else showBtn(true);
     });
     window.addEventListener('appinstalled',()=>{deferredPrompt=null;showBtn(false);});
   })();
   </script>
 </body>
 </html>
-
-
-
