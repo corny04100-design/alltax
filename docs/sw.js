@@ -4,8 +4,8 @@ const APP_SHELL = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
-  "./icon-192.png",
-  "./icon-512.png"
+  "./icon-192-v1.png",
+  "./icon-512-v1.png"
 ];
 
 // ▶ 설치 (Install): 핵심 리소스 사전 캐시
