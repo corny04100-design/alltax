@@ -53,10 +53,11 @@
     .tile .go{margin-top:18px;display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.18);backdrop-filter:blur(3px);font-weight:900;font-size:15px;font-family:"Segoe UI","Roboto","Helvetica Neue",Arial,sans-serif;letter-spacing:.3px;}
     .t1{background:var(--tile1)}.t2{background:var(--tile2)}.t3{background:var(--tile3)}.t4{background:var(--tile4)}
 
-    .quick-links{margin-top:18px;padding:12px;border:1px solid var(--ql-border);background:var(--ql-bg);border-radius:12px}
-    .quick-links .row{display:flex;gap:8px;align-items:center;overflow:auto;white-space:nowrap}
-    .quick-links .label{font-weight:800;color:var(--ql-text);padding:5px 7px;font-size:16px;border:1px solid #dbe0ff;border-radius:8px;background:none;}
-    .quick-links a{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid var(--ql-border);font-weight:700;white-space:nowrap;font-size:14.8px;color:var(--ql-text);}
+    /* ✅ Quick-links 개선: 글씨/폭 약간 축소 */
+    .quick-links{margin-top:18px;padding:10px;border:1px solid var(--ql-border);background:var(--ql-bg);border-radius:12px}
+    .quick-links .row{display:flex;gap:6px;align-items:center;overflow:auto;white-space:nowrap}
+    .quick-links .label{font-weight:800;color:var(--ql-text);padding:4px 6px;font-size:15px;border:1px solid #dbe0ff;border-radius:8px;background:none;}
+    .quick-links a{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid var(--ql-border);font-weight:700;white-space:nowrap;font-size:13px;color:var(--ql-text);}
     .link.law{background:var(--ql-law-bg);border-color:var(--ql-law-br);}
     .link.wetax{background:var(--ql-wetax-bg);border-color:var(--ql-wetax-br);}
     .link.value{background:var(--ql-value-bg);border-color:var(--ql-value-br);}
@@ -64,7 +65,7 @@
     .link.appraised{background:var(--ql-app-bg);border-color:var(--ql-app-br);}
     .link.land{background:var(--ql-land-bg);border-color:var(--ql-land-br);}
 
-    /* ✅ AI/구청 버튼 영역 */
+    /* ✅ AI/구청 버튼 */
     .ai-help{margin-top:18px;text-align:center;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
     .ai-btn, .gu-office{
       display:inline-block;
@@ -131,20 +132,20 @@
     </div>
 
     <nav class="quick-links">
-  <div class="row">
-    <span class="label">바로가기</span>
-    <a class="link house" href="https://www.realtyprice.kr/notice/main/mainBody.htm" target="_blank">주택공시가격</a>
-    <a class="link value" href="https://www.wetax.go.kr/tcp/loi/J030401M01.do" target="_blank">시가표준액</a>
-    <a class="link land" href="https://www.realtyprice.kr" target="_blank">토지공시지가</a>
-    <a class="link appraised" href="https://www.wetax.go.kr/tcp/loi/J030901M01.do" target="_blank">시가인정액</a>
-    <a class="link wetax" href="https://www.wetax.go.kr/etq/etp/epi/E070101M01.do" target="_blank">위택스</a>
-    <a class="link law" href="https://www.law.go.kr/LSW/lsSc.do?query=%EC%A7%80%EB%B0%A9%EC%84%B8%EB%B2%95" target="_blank">지방세법</a>
-  </div>
-</nav>
+      <div class="row">
+        <span class="label">바로가기</span>
+        <a class="link house" href="https://www.realtyprice.kr/notice/main/mainBody.htm" target="_blank">주택공시가격</a>
+        <a class="link value" href="https://www.wetax.go.kr/tcp/loi/J030401M01.do" target="_blank">시가표준액</a>
+        <a class="link land" href="https://www.realtyprice.kr" target="_blank">토지공시지가</a>
+        <a class="link appraised" href="https://www.wetax.go.kr/tcp/loi/J030901M01.do" target="_blank">시가인정액</a>
+        <a class="link wetax" href="https://www.wetax.go.kr/etq/etp/epi/E070101M01.do" target="_blank">위택스</a>
+        <a class="link law" href="https://www.law.go.kr/LSW/lsSc.do?query=%EC%A7%80%EB%B0%A9%EC%84%B8%EB%B2%95" target="_blank">지방세법</a>
+      </div>
+    </nav>
 
     <section class="ai-help">
       <a href="https://chat.openai.com" target="_blank" class="ai-btn">🤖 AI 지방세 상담</a>
-      <a href="https://www.wetax.go.kr/tcp/loi/J030301M01.do" target="_blank" class="gu-office"> 담당자 찾기 🔍</a>
+      <a href="https://www.wetax.go.kr/tcp/loi/J030301M01.do" target="_blank" class="gu-office">담당자 찾기 🔍</a>
     </section>
   </main>
 
@@ -175,8 +176,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
