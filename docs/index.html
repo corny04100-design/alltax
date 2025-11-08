@@ -27,6 +27,7 @@
   --accent-start:#22d3ee; --accent-mid:#60a5fa; --accent-end:#a78bfa;
 }
 
+/* 기본 스타일 */
 body{margin:0;font-family:Pretendard,system-ui,-apple-system,Segoe UI,Roboto,Noto Sans KR,sans-serif;background:var(--bg);color:var(--text)}
 a,.tile a,.quick-links a,.go{text-decoration:none!important}
 .wrap{max-width:1080px;margin:0 auto;padding:24px}
@@ -41,13 +42,12 @@ header{position:sticky;top:0;background:linear-gradient(180deg,rgba(0,0,0,.22),r
 .btn-install{appearance:none;border:1px solid var(--line);background:rgba(255,255,255,.9);color:#000;font-weight:800;border-radius:10px;padding:8px 12px;cursor:pointer;box-shadow:0 6px 18px var(--shadow)}
 .btn-install.hidden{display:none}
 
-/* 헤더 오른쪽 브랜드 */
+/* 오른쪽 브랜드 배지 */
 .brand-inline{display:flex;align-items:center;gap:10px;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg,rgba(34,211,238,.1),rgba(96,165,250,.12),rgba(167,139,250,.1));border:1px solid rgba(148,163,184,.25);box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);white-space:nowrap;margin-right:8px}
-.taxy-inline{font-weight:1000;letter-spacing:-.02em;line-height:1;background:linear-gradient(90deg,var(--accent-start),var(--accent-mid),var(--accent-end));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:1.05rem;display:inline-flex;align-items:center;gap:.18em;animation:glowPulseSoft 2.8s ease-in-out infinite}
+.taxy-inline{font-weight:1000;letter-spacing:-.02em;line-height:1;background:linear-gradient(90deg,var(--accent-start),var(--accent-mid),var(--accent-end));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:1.05rem;display:inline-flex;align-items:center;gap:.18em;}
+.taxy-inline.glow-active{animation:glowPulseSoft 2.8s ease-in-out infinite;}
 .brand-y-small{display:inline-grid;place-items:center;width:.9em;height:1.1em;border-radius:.3em;background:linear-gradient(135deg,#93c5fd,#3b82f6);color:#0b1220;-webkit-text-fill-color:initial;font-weight:1000;box-shadow:0 4px 10px rgba(59,130,246,.45)}
 .tag-inline{font-weight:900;font-size:.78rem;color:#e5edff;padding:.2rem .5rem;border-radius:999px;border:1px solid rgba(99,102,241,.35);background:rgba(37,99,235,.18)}
-.brand-mobile{display:none;justify-content:center;margin-top:4px}
-@media(max-width:640px){.brand-inline{display:none}.brand-mobile{display:flex}}
 
 /* Splash */
 #splash{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;background:radial-gradient(1200px 600px at 50% -10%,rgba(37,99,235,.35),transparent 60%),#0b1220;opacity:1;transition:opacity .8s ease;padding:24px}
@@ -65,30 +65,19 @@ header{position:sticky;top:0;background:linear-gradient(180deg,rgba(0,0,0,.22),r
 .sub{font-size:1.3rem;font-weight:900;color:#dbeafe}
 #splash.fade-out{opacity:0;pointer-events:none}
 
-/* Glow Pulse (강화 버전) */
+/* Glow Pulse (강화) */
 @keyframes glowPulse{
-  0%{
-    text-shadow:0 0 10px rgba(96,165,250,.65),0 0 22px rgba(147,197,253,.55),0 0 36px rgba(167,139,250,.35);
-    transform:scale(1);
-  }
-  50%{
-    text-shadow:0 0 22px rgba(96,165,250,1),0 0 44px rgba(147,197,253,.9),0 0 72px rgba(167,139,250,.75);
-    transform:scale(1.025);
-  }
-  100%{
-    text-shadow:0 0 10px rgba(96,165,250,.65),0 0 22px rgba(147,197,253,.55),0 0 36px rgba(167,139,250,.35);
-    transform:scale(1);
-  }
+  0%{text-shadow:0 0 10px rgba(96,165,250,.65),0 0 22px rgba(147,197,253,.55),0 0 36px rgba(167,139,250,.35);transform:scale(1);}
+  50%{text-shadow:0 0 22px rgba(96,165,250,1),0 0 44px rgba(147,197,253,.9),0 0 72px rgba(167,139,250,.75);transform:scale(1.025);}
+  100%{text-shadow:0 0 10px rgba(96,165,250,.65),0 0 22px rgba(147,197,253,.55),0 0 36px rgba(167,139,250,.35);transform:scale(1);}
 }
 @keyframes glowPulseSoft{
   0%,100%{filter:drop-shadow(0 0 0 rgba(147,197,253,0));}
   50%{filter:drop-shadow(0 0 12px rgba(147,197,253,.55));}
 }
-@media (prefers-reduced-motion: reduce){
-  .taxy,.taxy-inline{animation:none}
-}
+@media (prefers-reduced-motion: reduce){.taxy,.taxy-inline{animation:none}}
 
-/* 카드/링크 */
+/* 메인 콘텐츠 */
 .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
 .card{border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 26px var(--shadow);background:var(--card)}
 .tile{display:flex;flex-direction:column;justify-content:space-between;min-height:160px;padding:18px;color:#fff;border-radius:16px}
@@ -129,7 +118,7 @@ header{position:sticky;top:0;background:linear-gradient(180deg,rgba(0,0,0,.22),r
     </div>
     <div class="spacer"></div>
     <span class="brand-inline">
-      <span class="taxy-inline">TAX<span class="brand-y-small">y</span></span>
+      <span class="taxy-inline" id="taxyGlow">TAX<span class="brand-y-small">y</span></span>
       <span class="tag-inline">TAX&nbsp;+&nbsp;EASY</span>
     </span>
     <button id="btnInstall" class="btn-install hidden">앱설치</button>
@@ -167,6 +156,8 @@ header{position:sticky;top:0;background:linear-gradient(180deg,rgba(0,0,0,.22),r
 if('serviceWorker' in navigator){
   window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(console.error));
 }
+
+// Splash 3.5초 후 fade-out
 (function(){
   const splash=document.getElementById('splash');
   const DURATION=3500;
@@ -177,6 +168,13 @@ if('serviceWorker' in navigator){
     },DURATION);
   });
 })();
+
+// TAXy 글로우 10초간 활성
+window.addEventListener('load',()=>{
+  const taxy=document.getElementById('taxyGlow');
+  taxy.classList.add('glow-active');
+  setTimeout(()=>taxy.classList.remove('glow-active'),10000);
+});
 </script>
 </body>
 </html>
