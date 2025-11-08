@@ -107,42 +107,7 @@
 
     /* 글로우 + 블링크 (일반/강함) */
     @keyframes brandGlowBlink {
-      0%   { opacity:1;   filter: drop-shadow(0 0 0 rgba(125,211,252,0));       text-shadow:0 0 0 rgba(125,211,252,0); }
-      20%  { opacity:.65; filter: drop-shadow(0 0 20px rgba(125,211,252,.45));  text-shadow:0 0 16px rgba(125,211,252,.40); }
-      40%  { opacity:1;   filter: drop-shadow(0 0 12px rgba(125,211,252,.30));  text-shadow:0 0 10px rgba(125,211,252,.25); }
-      60%  { opacity:.6;  filter: drop-shadow(0 0 22px rgba(125,211,252,.55));  text-shadow:0 0 18px rgba(125,211,252,.45); }
-      80%  { opacity:1;   filter: drop-shadow(0 0 10px rgba(125,211,252,.25));  text-shadow:0 0 8px rgba(125,211,252,.2); }
-      100% { opacity:1;   filter: drop-shadow(0 0 0 rgba(125,211,252,0));       text-shadow:0 0 0 rgba(125,211,252,0); }
-    }
-    @keyframes brandGlowBlinkStrong {
-      0%   { opacity:1;   filter: drop-shadow(0 0 0 rgba(125,211,252,0));       text-shadow:0 0 0 rgba(125,211,252,0); }
-      15%  { opacity:.45; filter: drop-shadow(0 0 30px rgba(125,211,252,.75));  text-shadow:0 0 24px rgba(125,211,252,.70); }
-      30%  { opacity:1;   filter: drop-shadow(0 0 16px rgba(125,211,252,.45));  text-shadow:0 0 14px rgba(125,211,252,.40); }
-      55%  { opacity:.4;  filter: drop-shadow(0 0 34px rgba(125,211,252,.85));  text-shadow:0 0 28px rgba(125,211,252,.80); }
-      80%  { opacity:1;   filter: drop-shadow(0 0 12px rgba(125,211,252,.35));  text-shadow:0 0 10px rgba(125,211,252,.30); }
-      100% { opacity:1;   filter: drop-shadow(0 0 0 rgba(125,211,252,0));       text-shadow:0 0 0 rgba(125,211,252,0); }
-    }
-
-    /* ===== 스플래시 ===== */
-    #splash{
-      position:fixed; inset:0; z-index:10000;
-      display:flex; flex-direction:column; align-items:center; justify-content:center;
-      gap:18px; text-align:center; color:#fff;
-      background: radial-gradient(1200px 600px at 50% -10%, rgba(37,99,235,.35), transparent 60%), #0b1220;
-      opacity:1; transition:opacity .8s ease;
-      padding:24px;
-    }
-    #splash .mark{font-size:48px; line-height:1;}
-    #splash .brand-line{display:flex; align-items:center; gap:12px; justify-content:center; font-weight:900;}
-    /* 3.5초 동안 강한 깜빡임(무한 반복이지만 3.5초 후 스플래시 제거) */
-    #splash .taxy{font-size:2.15rem; animation: brandGlowBlinkStrong .7s ease-in-out infinite;}
-    #splash .sub{font-size:1.22rem; opacity:.96; font-weight:900; letter-spacing:.02em; color:#dbeafe;}
-    #splash .tag{font-size:.95rem;font-weight:900;color:#c7d2fe;opacity:.95;padding:.38rem .68rem;border:1px solid rgba(99,102,241,.35);border-radius:999px;background:rgba(37,99,235,.18);}
-    #splash.fade-out{opacity:0; pointer-events:none;}
-
-    /* ===== 메인 우측 상단 고정 TAXy ===== */
-    .brand-fixed{
-      posit<!DOCTYPE html>
+      0%  <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
@@ -206,7 +171,7 @@
     .tile .go{margin-top:18px;display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.18);backdrop-filter:blur(3px);font-weight:900;font-size:15px;font-family:"Segoe UI","Roboto","Helvetica Neue",Arial,sans-serif;letter-spacing:.3px;}
     .t1{background:var(--tile1)}.t2{background:var(--tile2)}.t3{background:var(--tile3)}.t4{background:var(--tile4)}
 
-    /* ===== Quick links (배경색 복구/유지) ===== */
+    /* ===== Quick links ===== */
     .quick-links{margin-top:18px;padding:10px;border:1px solid var(--ql-border);background:var(--ql-bg);border-radius:12px}
     .quick-links .row{display:flex;gap:6px;align-items:center;overflow:auto;white-space:nowrap}
     .quick-links .label{font-weight:800;color:var(--ql-text);padding:4px 6px;font-size:15px;border:1px solid #dbe0ff;border-radius:8px;background:none;}
@@ -226,21 +191,19 @@
     .ai-btn{display:inline-block;padding:12px 20px;border-radius:12px;font-weight:900;font-size:16px;color:#fff;box-shadow:0 6px 18px var(--shadow);transition:background .2s, transform .1s;background:#ef4444;}
     .ai-btn:hover{background:#dc2626;transform:translateY(-2px);}
 
-    /* ===== TAXy 공통(글로우 + 깜빡) ===== */
+    /* ===== TAXy 공통(글로우 + 강한 블링크) ===== */
     .taxy{
       font-weight:1000; letter-spacing:-0.03em;
       background: linear-gradient(90deg, var(--accent-start), var(--accent-mid), var(--accent-end));
       -webkit-background-clip:text; -webkit-text-fill-color:transparent;
       position:relative;
       filter: drop-shadow(0 0 0 rgba(125,211,252,0));
-      text-shadow:
-        0 0 0 rgba(125,211,252,0),
-        0 0 0 rgba(99,102,241,0);
+      text-shadow:0 0 0 rgba(125,211,252,0);
     }
     .brand-y{
       display:inline-grid; place-items:center;
       height:1.45em;
-      padding:0 .30em;     /* 좌우폭 줄임 */
+      padding:0 .30em;     /* 좌우폭 줄인 상태 유지 */
       border-radius:0.40em;
       background:linear-gradient(135deg,#93c5fd,#3b82f6);
       color:#0b1220; -webkit-text-fill-color:initial;
@@ -249,15 +212,6 @@
         inset 0 0 0 1px rgba(255,255,255,.35);
     }
 
-    /* 글로우 + 블링크 (일반/강함) */
-    @keyframes brandGlowBlink {
-      0%   { opacity:1;   filter: drop-shadow(0 0 0 rgba(125,211,252,0));       text-shadow:0 0 0 rgba(125,211,252,0); }
-      20%  { opacity:.65; filter: drop-shadow(0 0 20px rgba(125,211,252,.45));  text-shadow:0 0 16px rgba(125,211,252,.40); }
-      40%  { opacity:1;   filter: drop-shadow(0 0 12px rgba(125,211,252,.30));  text-shadow:0 0 10px rgba(125,211,252,.25); }
-      60%  { opacity:.6;  filter: drop-shadow(0 0 22px rgba(125,211,252,.55));  text-shadow:0 0 18px rgba(125,211,252,.45); }
-      80%  { opacity:1;   filter: drop-shadow(0 0 10px rgba(125,211,252,.25));  text-shadow:0 0 8px rgba(125,211,252,.2); }
-      100% { opacity:1;   filter: drop-shadow(0 0 0 rgba(125,211,252,0));       text-shadow:0 0 0 rgba(125,211,252,0); }
-    }
     @keyframes brandGlowBlinkStrong {
       0%   { opacity:1;   filter: drop-shadow(0 0 0 rgba(125,211,252,0));       text-shadow:0 0 0 rgba(125,211,252,0); }
       15%  { opacity:.45; filter: drop-shadow(0 0 30px rgba(125,211,252,.75));  text-shadow:0 0 24px rgba(125,211,252,.70); }
@@ -278,21 +232,25 @@
     }
     #splash .mark{font-size:48px; line-height:1;}
     #splash .brand-line{display:flex; align-items:center; gap:12px; justify-content:center; font-weight:900;}
-    /* 3.5초 동안 강한 깜빡임(무한 반복이지만 3.5초 후 스플래시 제거) */
+    /* 3.5초 동안 강한 깜빡임(무한반복이지만 3.5초 후 제거) */
     #splash .taxy{font-size:2.15rem; animation: brandGlowBlinkStrong .7s ease-in-out infinite;}
     #splash .sub{font-size:1.22rem; opacity:.96; font-weight:900; letter-spacing:.02em; color:#dbeafe;}
     #splash .tag{font-size:.95rem;font-weight:900;color:#c7d2fe;opacity:.95;padding:.38rem .68rem;border:1px solid rgba(99,102,241,.35);border-radius:999px;background:rgba(37,99,235,.18);}
     #splash.fade-out{opacity:0; pointer-events:none;}
 
-    /* ===== 메인 우측 상단 고정 TAXy ===== */
-    .brand-fixed{
-      position:fixed; top:14px; right:16px; z-index:9999;
+    /* ===== 헤더 우측 끝에 고정(같은 선상) ===== */
+    .brand-inline{
+      margin-left:auto;                /* spacer 뒤에 오지만 혹시 모를 레이아웃 대비 */
       display:flex; align-items:center; gap:8px;
-      pointer-events:none;
+      pointer-events:none;             /* 클릭 방해 X */
     }
-    /* 10초 동안 깜빡임: 1초 사이클 x 10회 */
-    .brand-fixed .taxy{font-size:1.25rem; animation: brandGlowBlink 1s ease-in-out 10;}
-    .brand-fixed .tag{font-size:.80rem;font-weight:900;color:#c7d2fe;opacity:.95;padding:.30rem .52rem;border:1px solid rgba(99,102,241,.35);border-radius:999px;background:rgba(37,99,235,.18);}
+    /* 스플래시와 같은 강도로 10초간 깜빡임 (0.7s 사이클 × 10회 ≈ 7s라서 14회로 9.8s) */
+    .brand-inline .taxy{font-size:1.3rem; animation: brandGlowBlinkStrong .7s ease-in-out 14;}
+
+    .brand-inline .tag{
+      font-size:.80rem;font-weight:900;color:#c7d2fe;opacity:.95;
+      padding:.30rem .52rem;border:1px solid rgba(99,102,241,.35);border-radius:999px;background:rgba(37,99,235,.18);
+    }
 
     /* 접근성: 모션 최소화 */
     @media (prefers-reduced-motion: reduce){
@@ -312,20 +270,23 @@
     <div class="sub">더 편리한 세무 AI</div>
   </div>
 
-  <!-- 메인 우측 상단 고정 TAXy -->
-  <div class="brand-fixed" aria-hidden="true">
-    <span class="taxy">TAX<span class="brand-y">y</span></span>
-    <span class="tag">TAX&nbsp;+&nbsp;EASY</span>
-  </div>
-
   <header>
     <div class="appbar wrap">
       <div class="logo">
         <span class="badge">💠</span>
         <span class="title-text">2025년 지방세 계산</span>
       </div>
+
       <div class="spacer"></div>
-      <button id="btnInstall" class="btn-install hidden">앱설치</button>
+
+      <!-- 설치 버튼은 우측으로, 그 다음 완전 오른쪽 끝에 TAXy 배치 -->
+      <button id="btnInstall" class="btn-install hidden" type="button">앱설치</button>
+
+      <!-- 메인 헤더 우측 맨끝(같은 선상) TAXy -->
+      <div class="brand-inline" aria-hidden="true">
+        <span class="taxy">TAX<span class="brand-y">y</span></span>
+        <span class="tag">TAX&nbsp;+&nbsp;EASY</span>
+      </div>
     </div>
   </header>
 
