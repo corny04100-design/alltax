@@ -24,6 +24,8 @@
       --tile3:linear-gradient(135deg,#facc15 0%,#f97316 100%);
       --tile4:linear-gradient(135deg,#7e22ce 0%,#c084fc 100%);
       --ql-bg:#ffffff; --ql-border:#dbe3ee; --ql-text:#0f172a;
+
+      /* 브랜드 그라디언트 */
       --accent-start:#22d3ee; --accent-mid:#60a5fa; --accent-end:#a78bfa;
     }
 
@@ -41,9 +43,9 @@
     .btn-install{appearance:none;border:1px solid var(--line);background:rgba(255,255,255,.9);color:#000;font-weight:800;border-radius:10px;padding:8px 12px;cursor:pointer;box-shadow:0 6px 18px var(--shadow)}
     .btn-install.hidden{display:none}
 
-    /* ✅ 헤더 오른쪽 브랜드 */
+    /* 헤더 오른쪽 브랜드 배지 */
     .brand-inline{display:flex;align-items:center;gap:10px;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg,rgba(34,211,238,.1),rgba(96,165,250,.12),rgba(167,139,250,.1));border:1px solid rgba(148,163,184,.25);box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);white-space:nowrap;margin-right:8px}
-    .taxy-inline{font-weight:1000;letter-spacing:-.02em;line-height:1;background:linear-gradient(90deg,var(--accent-start),var(--accent-mid),var(--accent-end));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:1.05rem;display:inline-flex;align-items:center;gap:.18em}
+    .taxy-inline{font-weight:1000;letter-spacing:-.02em;line-height:1;background:linear-gradient(90deg,var(--accent-start),var(--accent-mid),var(--accent-end));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:1.05rem;display:inline-flex;align-items:center;gap:.18em;animation:glowPulseSoft 2.8s ease-in-out infinite}
     .brand-y-small{display:inline-grid;place-items:center;width:.9em;height:1.1em;border-radius:.3em;background:linear-gradient(135deg,#93c5fd,#3b82f6);color:#0b1220;-webkit-text-fill-color:initial;font-weight:1000;box-shadow:0 4px 10px rgba(59,130,246,.35)}
     .tag-inline{font-weight:900;font-size:.78rem;color:#e5edff;padding:.2rem .5rem;border-radius:999px;border:1px solid rgba(99,102,241,.35);background:rgba(37,99,235,.18)}
 
@@ -53,27 +55,44 @@
     /* ---------- 스플래시 ---------- */
     #splash{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;background:radial-gradient(1200px 600px at 50% -10%,rgba(37,99,235,.35),transparent 60%),#0b1220;opacity:1;transition:opacity .8s ease;padding:24px}
     #splash .band{display:flex;flex-direction:column;align-items:center;gap:16px;padding:26px 30px;border-radius:18px;background:linear-gradient(90deg,rgba(34,211,238,.1),rgba(96,165,250,.12),rgba(167,139,250,.1));border:1px solid rgba(148,163,184,.25);box-shadow:0 16px 40px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,255,255,.04)}
-    /* ✨ TAXy 테두리 효과 */
-    #splash .taxy{
+    .taxy{
       font-size:2.6rem;font-weight:1000;letter-spacing:-.03em;
       background:linear-gradient(90deg,#22d3ee,#60a5fa,#a78bfa);
       -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-      text-shadow:0 0 6px rgba(96,165,250,.65),0 0 12px rgba(147,197,253,.55),0 0 18px rgba(147,197,253,.45);
-      -webkit-text-stroke:1.2px rgba(173,216,255,.65);
+      /* 글로우 펄스 */
+      text-shadow:0 0 8px rgba(96,165,250,.65),0 0 16px rgba(147,197,253,.5),0 0 26px rgba(147,197,253,.35);
+      -webkit-text-stroke:1.2px rgba(173,216,255,.55);
+      animation:glowPulse 2.2s ease-in-out infinite;
     }
-    #splash .brand-y{
+    .brand-y{
       display:inline-grid;place-items:center;margin-left:.1em;
-      width:1.05em;height:1.45em; /* 좌우폭 줄임 ✅ */
+      width:1.05em;height:1.45em; /* 좌우폭 줄인 상태 유지 */
       border-radius:.35em;
       background:linear-gradient(135deg,#93c5fd,#3b82f6);
       color:#0b1220;-webkit-text-fill-color:initial;font-weight:1000;
       box-shadow:0 6px 18px rgba(59,130,246,.35);
     }
-    #splash .tag{font-size:1.15rem;font-weight:900;color:#e5edff;padding:.42rem .8rem;border-radius:999px;border:1px solid rgba(99,102,241,.35);background:rgba(37,99,235,.2)}
-    #splash .sub{font-size:1.3rem;font-weight:900;color:#dbeafe}
+    .tag{font-size:1.15rem;font-weight:900;color:#e5edff;padding:.42rem .8rem;border-radius:999px;border:1px solid rgba(99,102,241,.35);background:rgba(37,99,235,.2)}
+    .sub{font-size:1.3rem;font-weight:900;color:#dbeafe}
     #splash.fade-out{opacity:0;pointer-events:none}
 
-    /* 카드 / 타일 / 링크 (기존 유지) */
+    /* Glow Pulse 애니메이션 */
+    @keyframes glowPulse{
+      0%   { text-shadow:0 0 8px rgba(96,165,250,.55),0 0 16px rgba(147,197,253,.4),0 0 26px rgba(147,197,253,.25); transform:scale(1); }
+      50%  { text-shadow:0 0 14px rgba(96,165,250,.9),0 0 28px rgba(147,197,253,.7),0 0 42px rgba(167,139,250,.55); transform:scale(1.015); }
+      100% { text-shadow:0 0 8px rgba(96,165,250,.55),0 0 16px rgba(147,197,253,.4),0 0 26px rgba(147,197,253,.25); transform:scale(1); }
+    }
+    @keyframes glowPulseSoft{
+      0%,100%{ filter:drop-shadow(0 0 0 rgba(147,197,253,0)); }
+      50%    { filter:drop-shadow(0 0 8px rgba(147,197,253,.4)); }
+    }
+
+    /* 모션 최소화 환경에서 애니메이션 제거 */
+    @media (prefers-reduced-motion: reduce){
+      .taxy, .taxy-inline{animation:none}
+    }
+
+    /* 카드 / 타일 / 링크 */
     .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
     .card{border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 26px var(--shadow);background:var(--card)}
     .tile{display:flex;flex-direction:column;justify-content:space-between;min-height:160px;padding:18px;color:#fff;border-radius:16px}
@@ -83,10 +102,13 @@
     .tile .go{margin-top:18px;display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.18);backdrop-filter:blur(3px);font-weight:900;font-size:15px;}
     .t1{background:var(--tile1)}.t2{background:var(--tile2)}.t3{background:var(--tile3)}.t4{background:var(--tile4)}
 
+    /* 빠른 링크 */
     .quick-links{margin-top:18px;padding:10px;border:1px solid var(--ql-border);background:var(--ql-bg);border-radius:12px}
     .quick-links .row{display:flex;gap:6px;align-items:center;overflow:auto;white-space:nowrap}
     .quick-links .label{font-weight:800;color:var(--ql-text);padding:4px 6px;font-size:15px;border:1px solid #dbe0ff;border-radius:8px;background:none;}
     .quick-links a{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid var(--ql-border);font-weight:700;font-size:13px;color:var(--ql-text);}
+
+    /* 하단 버튼들 */
     .ai-help{margin-top:18px;text-align:center;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
     .ai-btn,.gu-office{display:inline-block;padding:12px 20px;border-radius:12px;font-weight:900;font-size:16px;color:#fff;box-shadow:0 6px 18px var(--shadow);}
     .ai-btn{background:#ef4444;} .ai-btn:hover{background:#dc2626;}
@@ -95,8 +117,8 @@
 </head>
 
 <body>
-  <!-- ✅ Splash -->
-  <div id="splash">
+  <!-- Splash -->
+  <div id="splash" aria-label="로딩 화면">
     <div class="band">
       <div class="taxy">TAX<span class="brand-y">y</span></div>
       <div class="tag">TAX&nbsp;+&nbsp;EASY</div>
@@ -104,7 +126,7 @@
     </div>
   </div>
 
-  <!-- ✅ 헤더 -->
+  <!-- 헤더 -->
   <header>
     <div class="appbar wrap">
       <div class="logo">
@@ -112,13 +134,14 @@
         <span class="title-text">2025년 지방세 계산</span>
       </div>
       <div class="spacer"></div>
+      <!-- 가로 배지 (오른쪽 끝) -->
       <span class="brand-inline">
         <span class="taxy-inline">TAX<span class="brand-y-small">y</span></span>
         <span class="tag-inline">TAX&nbsp;+&nbsp;EASY</span>
       </span>
       <button id="btnInstall" class="btn-install hidden">앱설치</button>
     </div>
-
+    <!-- 모바일일 때 중앙 표시 -->
     <div class="brand-mobile">
       <span class="brand-inline">
         <span class="taxy-inline">TAX<span class="brand-y-small">y</span></span>
@@ -127,7 +150,7 @@
     </div>
   </header>
 
-  <!-- ✅ 메인 -->
+  <!-- 메인 -->
   <main class="wrap">
     <div class="grid">
       <article class="card"><a class="tile t1" href="https://corny04100-design.github.io/acquisition2025/" target="_blank"><span class="icon">🏬</span><div><div class="name">개인 부동산 취득세</div><div class="desc">주택·상가 매매/상속/증여</div></div><span class="go">바로가기 ↗</span></a></article>
@@ -136,28 +159,30 @@
       <article class="card"><a class="tile t4" href="https://corny04100-design.github.io/JJS2025/" target="_blank"><span class="icon">🏗️</span><div><div class="name">지역자원시설세</div><div class="desc">소방세 및 지하수 사용 등</div></div><span class="go">바로가기 ↗</span></a></article>
     </div>
 
-    <nav class="quick-links">
+    <nav class="quick-links" aria-label="관련 사이트 바로가기">
       <div class="row">
         <span class="label">바로가기</span>
-        <a class="link house" href="https://www.realtyprice.kr/notice/main/mainBody.htm" target="_blank">주택공시가격</a>
-        <a class="link value" href="https://www.wetax.go.kr/tcp/loi/J030401M01.do" target="_blank">시가표준액</a>
-        <a class="link land" href="https://www.realtyprice.kr" target="_blank">토지공시지가</a>
-        <a class="link appraised" href="https://www.wetax.go.kr/tcp/loi/J030901M01.do" target="_blank">시가인정액</a>
-        <a class="link wetax" href="https://www.wetax.go.kr/etq/etp/epi/E070101M01.do" target="_blank">위택스</a>
-        <a class="link law" href="https://www.law.go.kr/LSW/lsSc.do?query=%EC%A7%80%EB%B0%A9%EC%84%B8%EB%B2%95" target="_blank">지방세법</a>
+        <a class="link house" href="https://www.realtyprice.kr/notice/main/mainBody.htm" target="_blank" rel="noopener">주택공시가격</a>
+        <a class="link value" href="https://www.wetax.go.kr/tcp/loi/J030401M01.do" target="_blank" rel="noopener">시가표준액</a>
+        <a class="link land" href="https://www.realtyprice.kr" target="_blank" rel="noopener">토지공시지가</a>
+        <a class="link appraised" href="https://www.wetax.go.kr/tcp/loi/J030901M01.do" target="_blank" rel="noopener">시가인정액</a>
+        <a class="link wetax" href="https://www.wetax.go.kr/etq/etp/epi/E070101M01.do" target="_blank" rel="noopener">위택스</a>
+        <a class="link law" href="https://www.law.go.kr/LSW/lsSc.do?query=%EC%A7%80%EB%B0%A9%EC%84%B8%EB%B2%95" target="_blank" rel="noopener">지방세법</a>
       </div>
     </nav>
 
-    <section class="ai-help">
-      <a href="https://chat.openai.com" target="_blank" class="ai-btn">🤖 AI 지방세 상담</a>
-      <a href="https://www.wetax.go.kr/tcp/loi/J030301M01.do" target="_blank" class="gu-office">담당자 찾기 🔍</a>
+    <section class="ai-help" aria-label="도움말">
+      <a href="https://chat.openai.com" target="_blank" rel="noopener" class="ai-btn">🤖 AI 지방세 상담</a>
+      <a href="https://www.wetax.go.kr/tcp/loi/J030301M01.do" target="_blank" rel="noopener" class="gu-office">담당자 찾기 🔍</a>
     </section>
   </main>
 
   <script>
+  // 서비스워커 등록
   if('serviceWorker' in navigator){
     window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(console.error));
   }
+  // 스플래시 3.5초 후 페이드아웃
   (function(){
     const splash=document.getElementById('splash');
     const DURATION=3500;
