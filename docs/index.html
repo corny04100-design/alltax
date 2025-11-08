@@ -35,7 +35,7 @@
 
       /* Brand accent & glow speed */
       --accent-start:#22d3ee; --accent-mid:#60a5fa; --accent-end:#a78bfa;
-      --glow-dur:1.21s; /* ← 10% 더 느리게 */
+      --glow-dur:1.69s; /* ← 40% 느리게 */
     }
 
     body{margin:0;font-family:Pretendard,system-ui,-apple-system,Segoe UI,Roboto,Noto Sans KR,sans-serif;background:var(--bg);color:var(--text)}
@@ -60,14 +60,14 @@
     }
     #splash .brand-y{
       display:inline-grid; place-items:center;
-      height:1.45em; padding:0 .28em; /* 좌우폭 살짝 축소 */
+      height:1.45em; padding:0 .28em; /* 좌우폭 축소 */
       border-radius:.4em;
       background:linear-gradient(135deg,#93c5fd,#3b82f6);
       color:#0b1220; -webkit-text-fill-color:initial;
       box-shadow:0 6px 18px rgba(59,130,246,.35), inset 0 0 0 1px rgba(255,255,255,.35);
     }
     #splash .tag{
-      font-size:1.25rem; /* ← 1단계 키움 */
+      font-size:1.25rem; /* 1단계 키움 */
       font-weight:900; color:#c7d2fe; opacity:.95;
       padding:.5rem .85rem; border:1px solid rgba(99,102,241,.35);
       border-radius:999px; background:rgba(37,99,235,.18);
@@ -94,14 +94,14 @@
     }
     .brand-inline .brand-y{
       display:inline-grid; place-items:center;
-      height:1.45em; padding:0 .28em;  /* 좌우폭 축소 유지 */
+      height:1.45em; padding:0 .28em;  /* 좌우폭 축소 */
       border-radius:.4em;
       background:linear-gradient(135deg,#93c5fd,#3b82f6);
       color:#0b1220; -webkit-text-fill-color:initial;
       box-shadow:0 6px 18px rgba(59,130,246,.35), inset 0 0 0 1px rgba(255,255,255,.35);
     }
     .brand-inline .tag{
-      font-size:1.13rem; /* ← 1단계 키움 */
+      font-size:1.13rem; /* 1단계 키움 */
       font-weight:900; color:#c7d2fe; opacity:.95;
       padding:.35rem .65rem; border:1px solid rgba(99,102,241,.35); border-radius:999px; background:rgba(37,99,235,.18);
     }
@@ -132,13 +132,13 @@
     .ai-btn{padding:12px 20px;border-radius:12px;font-weight:900;font-size:16px;color:#fff;background:#ef4444;box-shadow:0 6px 18px var(--shadow);transition:background .2s, transform .1s;}
     .ai-btn:hover{background:#dc2626;transform:translateY(-2px);}
 
-    /* ---------- 글로우 & 텍스트 이펙트 ---------- */
+    /* ---------- 글로우 & 텍스트 이펙트 (완화 버전) ---------- */
     @keyframes glowStrong {
       0%{opacity:1;filter:drop-shadow(0 0 0 rgba(125,211,252,0));}
-      15%{opacity:.45;filter:drop-shadow(0 0 30px rgba(125,211,252,.75));}
-      30%{opacity:1;filter:drop-shadow(0 0 16px rgba(125,211,252,.45));}
-      55%{opacity:.4;filter:drop-shadow(0 0 34px rgba(125,211,252,.85));}
-      80%{opacity:1;filter:drop-shadow(0 0 12px rgba(125,211,252,.35));}
+      15%{opacity:.65;filter:drop-shadow(0 0 22px rgba(125,211,252,.55));}
+      30%{opacity:1;filter:drop-shadow(0 0 12px rgba(125,211,252,.35));}
+      55%{opacity:.6;filter:drop-shadow(0 0 24px rgba(125,211,252,.6));}
+      80%{opacity:1;filter:drop-shadow(0 0 10px rgba(125,211,252,.28));}
       100%{opacity:1;filter:drop-shadow(0 0 0 rgba(125,211,252,0));}
     }
     @keyframes fadeInUp {
