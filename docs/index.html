@@ -23,25 +23,21 @@
       --tile2:linear-gradient(135deg,#059669 0%,#22c55e 100%);
       --tile3:linear-gradient(135deg,#facc15 0%,#f97316 100%);
       --tile4:linear-gradient(135deg,#7e22ce 0%,#c084fc 100%);
-
-      /* Quick Links colors */
       --ql-bg:#ffffff; --ql-border:#dbe3ee; --ql-text:#0f172a;
-      --ql-law-bg:#e8f1ff;   --ql-law-br:#c7dbff;
+      --ql-law-bg:#e8f1ff; --ql-law-br:#c7dbff;
       --ql-wetax-bg:#eafbf1; --ql-wetax-br:#cdeedd;
       --ql-value-bg:#fff6d6; --ql-value-br:#ffe5a3;
       --ql-house-bg:#f3e8ff; --ql-house-br:#e3caff;
-      --ql-app-bg:#ffe8e8;   --ql-app-br:#ffc8c8;
-      --ql-land-bg:#e0f2fe;  --ql-land-br:#b9e6ff;
-
-      /* Brand accent & glow speed */
+      --ql-app-bg:#ffe8e8; --ql-app-br:#ffc8c8;
+      --ql-land-bg:#e0f2fe; --ql-land-br:#b9e6ff;
       --accent-start:#22d3ee; --accent-mid:#60a5fa; --accent-end:#a78bfa;
-      --glow-dur:1.69s; /* 40% 느리게 */
+      --glow-dur:1.21s;
     }
 
     body{margin:0;font-family:Pretendard,system-ui,-apple-system,Segoe UI,Roboto,Noto Sans KR,sans-serif;background:var(--bg);color:var(--text)}
-    a, .tile a, .quick-links a, .go { text-decoration:none; color:inherit; }
+    a{text-decoration:none;color:inherit;}
 
-    /* ---------- 스플래시 ---------- */
+    /* 스플래시 */
     #splash{
       position:fixed; inset:0; z-index:10000;
       display:flex; flex-direction:column; justify-content:center; align-items:center;
@@ -51,36 +47,30 @@
     }
     #splash.fade-out{opacity:0;pointer-events:none;}
     #splash .mark{font-size:48px;}
-
-    /* TAXy + TAG 한 줄 */
-    #splash .brand-line{display:flex; align-items:center; gap:10px; justify-content:center;}
     #splash .taxy{
-      font-size:2.4rem; font-weight:1000; letter-spacing:-.03em;
+      font-size:2.4rem;font-weight:1000;letter-spacing:-.03em;
       background:linear-gradient(90deg,var(--accent-start),var(--accent-mid),var(--accent-end));
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
       animation:glowStrong var(--glow-dur) ease-in-out infinite;
     }
     #splash .brand-y{
-      display:inline-grid; place-items:center;
-      height:1.45em; padding:0 .28em; /* 좌우폭 축소 */
-      border-radius:.4em;
+      display:inline-grid;place-items:center;
+      height:1.45em;padding:0 .28em;border-radius:.4em;
       background:linear-gradient(135deg,#93c5fd,#3b82f6);
-      color:#0b1220; -webkit-text-fill-color:initial;
-      box-shadow:0 6px 18px rgba(59,130,246,.35), inset 0 0 0 1px rgba(255,255,255,.35);
+      color:#0b1220;-webkit-text-fill-color:initial;
+      box-shadow:0 6px 18px rgba(59,130,246,.35),inset 0 0 0 1px rgba(255,255,255,.35);
     }
     #splash .tag{
-      font-size:1.17rem;
-      font-weight:900; color:#c7d2fe; opacity:.95;
-      padding:.5rem .85rem; border:1px solid rgba(99,102,241,.35);
-      border-radius:999px; background:rgba(37,99,235,.18);
+      font-size:1.38rem;font-weight:900;color:#c7d2fe;opacity:.95;
+      padding:.55rem .95rem;border:1px solid rgba(99,102,241,.35);
+      border-radius:999px;background:rgba(37,99,235,.18);
     }
-    /* 스플래시 서브 카피: 등장 + 빛 비침 */
     #splash .sub{
-      font-size:1.17rem; font-weight:900; color:#dbeafe;
-      animation:fadeInUp .9s ease-out .2s both, shine 1.8s ease-in-out 2 .6s;
+      font-size:1.25rem;font-weight:900;color:#dbeafe;
+      animation:fadeInUp .9s ease-out .2s both,shine 1.8s ease-in-out 2 .6s;
     }
 
-    /* ---------- 헤더 ---------- */
+    /* 헤더 */
     header{position:sticky;top:0;z-index:9;background:linear-gradient(180deg,rgba(0,0,0,.22),rgba(0,0,0,0));backdrop-filter:saturate(120%) blur(8px);}
     .appbar{display:flex;align-items:center;gap:10px;padding:16px 24px}
     .logo{display:flex;align-items:center;gap:10px}
@@ -89,31 +79,33 @@
     .spacer{flex:1}
     .brand-inline{display:flex;align-items:center;gap:8px}
     .brand-inline .taxy{
-      font-size:1.3rem; font-weight:1000; letter-spacing:-.03em;
+      font-size:1.4rem;font-weight:1000;letter-spacing:-.03em;
       background:linear-gradient(90deg,var(--accent-start),var(--accent-mid),var(--accent-end));
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
       animation:glowStrong var(--glow-dur) ease-in-out infinite;
     }
     .brand-inline .brand-y{
-      display:inline-grid; place-items:center;
-      height:1.45em; padding:0 .28em;  /* 좌우폭 축소 */
-      border-radius:.4em;
+      display:inline-grid;place-items:center;
+      height:1.45em;padding:0 .28em;border-radius:.4em;
       background:linear-gradient(135deg,#93c5fd,#3b82f6);
-      color:#0b1220; -webkit-text-fill-color:initial;
-      box-shadow:0 6px 18px rgba(59,130,246,.35), inset 0 0 0 1px rgba(255,255,255,.35);
+      color:#0b1220;-webkit-text-fill-color:initial;
+      box-shadow:0 6px 18px rgba(59,130,246,.35),inset 0 0 0 1px rgba(255,255,255,.35);
     }
     .brand-inline .tag{
-      font-size:1.13rem;
-      font-weight:900; color:#c7d2fe; opacity:.95;
-      padding:.35rem .65rem; border:1px solid rgba(99,102,241,.35); border-radius:999px; background:rgba(37,99,235,.18);
+      font-size:1.0rem;font-weight:900;color:#c7d2fe;opacity:.95;
+      padding:.35rem .65rem;border:1px solid rgba(99,102,241,.35);
+      border-radius:999px;background:rgba(37,99,235,.18);
+    }
+    .brand-inline .prefix{
+      font-size:1rem;font-weight:800;color:#e5e7eb;opacity:.9;margin-right:.3rem;
     }
 
-    /* ---------- 카드 및 링크 ---------- */
+    /* 카드 */
     .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));max-width:1080px;margin:0 auto;padding:24px;}
     .card{border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 26px var(--shadow);transition:transform .2s;background:var(--card)}
     .card:hover{transform:translateY(-2px)}
     .tile{display:flex;flex-direction:column;justify-content:space-between;min-height:160px;padding:18px;color:#fff;border-radius:16px}
-    .tile .icon{font-size:25px;line-height:1;margin-bottom:6px;}
+    .tile .icon{font-size:25px;margin-bottom:6px;}
     .tile .name{font-size:20px;font-weight:950;}
     .tile .desc{font-size:16px;font-weight:600;opacity:.95;}
     .tile .go{margin-top:18px;display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.18);backdrop-filter:blur(3px);font-weight:900;font-size:15px;}
@@ -134,13 +126,13 @@
     .ai-btn{padding:12px 20px;border-radius:12px;font-weight:900;font-size:16px;color:#fff;background:#ef4444;box-shadow:0 6px 18px var(--shadow);transition:background .2s, transform .1s;}
     .ai-btn:hover{background:#dc2626;transform:translateY(-2px);}
 
-    /* ---------- 글로우 & 텍스트 이펙트 (완화 버전) ---------- */
+    /* 애니메이션 */
     @keyframes glowStrong {
       0%{opacity:1;filter:drop-shadow(0 0 0 rgba(125,211,252,0));}
-      15%{opacity:.65;filter:drop-shadow(0 0 22px rgba(125,211,252,.55));}
-      30%{opacity:1;filter:drop-shadow(0 0 12px rgba(125,211,252,.35));}
-      55%{opacity:.6;filter:drop-shadow(0 0 24px rgba(125,211,252,.6));}
-      80%{opacity:1;filter:drop-shadow(0 0 10px rgba(125,211,252,.28));}
+      15%{opacity:.45;filter:drop-shadow(0 0 30px rgba(125,211,252,.75));}
+      30%{opacity:1;filter:drop-shadow(0 0 16px rgba(125,211,252,.45));}
+      55%{opacity:.4;filter:drop-shadow(0 0 34px rgba(125,211,252,.85));}
+      80%{opacity:1;filter:drop-shadow(0 0 12px rgba(125,211,252,.35));}
       100%{opacity:1;filter:drop-shadow(0 0 0 rgba(125,211,252,0));}
     }
     @keyframes fadeInUp {
@@ -156,12 +148,10 @@
 
 <body>
   <!-- 스플래시 -->
-  <div id="splash" aria-label="로딩 화면">
+  <div id="splash">
     <div class="mark">💠</div>
-    <div class="brand-line">
-      <span class="taxy">TAX<span class="brand-y">y</span></span>
-      <span class="tag">TAX&nbsp;+&nbsp;EASY</span>
-    </div>
+    <div class="taxy">TAX<span class="brand-y">y</span></div>
+    <div class="tag">TAX&nbsp;+&nbsp;EASY</div>
     <div class="sub">더 편리한 세무 AI</div>
   </div>
 
@@ -173,9 +163,9 @@
         <span class="title-text">2025년 지방세 계산</span>
       </div>
       <div class="spacer"></div>
-      <div class="brand-inline" id="brandInline">
+      <div class="brand-inline">
+        <span class="prefix">더 편리한 세무AI</span>
         <span class="taxy">TAX<span class="brand-y">y</span></span>
-        <span class="tag">TAX&nbsp;+&nbsp;EASY</span>
       </div>
     </div>
   </header>
@@ -183,57 +173,46 @@
   <!-- 메인 -->
   <main>
     <div class="grid">
-      <article class="card"><a class="tile t1" href="https://corny04100-design.github.io/acquisition2025/" target="_blank" rel="noopener"><span class="icon">🏬</span><div><div class="name">개인 부동산 취득세</div><div class="desc">주택·상가 매매/상속/증여</div></div><span class="go">바로가기 ↗</span></a></article>
-      <article class="card"><a class="tile t2" href="https://corny04100-design.github.io/property2025/" target="_blank" rel="noopener"><span class="icon">🏡</span><div><div class="name">재산세 – 공동주택</div><div class="desc">공동주택(아파트·연립·다세대)</div></div><span class="go">바로가기 ↗</span></a></article>
-      <article class="card"><a class="tile t3" href="https://corny04100-design.github.io/property2025_land/" target="_blank" rel="noopener"><span class="icon">🗺️</span><div><div class="name">재산세 – 토지</div><div class="desc">종합합산/별도합산/분리과세</div></div><span class="go">바로가기 ↗</span></a></article>
-      <article class="card"><a class="tile t4" href="https://corny04100-design.github.io/JJS2025/" target="_blank" rel="noopener"><span class="icon">🏗️</span><div><div class="name">지역자원시설세</div><div class="desc">소방세 및 지하수 사용 등</div></div><span class="go">바로가기 ↗</span></a></article>
+      <article class="card"><a class="tile t1" href="https://corny04100-design.github.io/acquisition2025/" target="_blank"><span class="icon">🏬</span><div><div class="name">개인 부동산 취득세</div><div class="desc">주택·상가 매매/상속/증여</div></div><span class="go">바로가기 ↗</span></a></article>
+      <article class="card"><a class="tile t2" href="https://corny04100-design.github.io/property2025/" target="_blank"><span class="icon">🏡</span><div><div class="name">재산세 – 공동주택</div><div class="desc">공동주택(아파트·연립·다세대)</div></div><span class="go">바로가기 ↗</span></a></article>
+      <article class="card"><a class="tile t3" href="https://corny04100-design.github.io/property2025_land/" target="_blank"><span class="icon">🗺️</span><div><div class="name">재산세 – 토지</div><div class="desc">종합합산/별도합산/분리과세</div></div><span class="go">바로가기 ↗</span></a></article>
+      <article class="card"><a class="tile t4" href="https://corny04100-design.github.io/JJS2025/" target="_blank"><span class="icon">🏗️</span><div><div class="name">지역자원시설세</div><div class="desc">소방세 및 지하수 사용 등</div></div><span class="go">바로가기 ↗</span></a></article>
     </div>
 
-    <nav class="quick-links" aria-label="관련 사이트 바로가기">
+    <nav class="quick-links">
       <div class="row">
         <span class="label">바로가기</span>
-        <a class="link house" href="https://www.realtyprice.kr/notice/main/mainBody.htm" target="_blank" rel="noopener">주택공시가격</a>
-        <a class="link value" href="https://www.wetax.go.kr/tcp/loi/J030401M01.do" target="_blank" rel="noopener">시가표준액</a>
-        <a class="link land" href="https://www.realtyprice.kr" target="_blank" rel="noopener">토지공시지가</a>
-        <a class="link appraised" href="https://www.wetax.go.kr/tcp/loi/J030901M01.do" target="_blank" rel="noopener">시가인정액</a>
-        <a class="link wetax" href="https://www.wetax.go.kr/etq/etp/epi/E070101M01.do" target="_blank" rel="noopener">위택스</a>
-        <a class="link law" href="https://www.law.go.kr/LSW/lsSc.do?query=%EC%A7%80%EB%B0%A9%EC%84%B8%EB%B2%95" target="_blank" rel="noopener">지방세법</a>
+        <a class="link house" href="https://www.realtyprice.kr/notice/main/mainBody.htm" target="_blank">주택공시가격</a>
+        <a class="link value" href="https://www.wetax.go.kr/tcp/loi/J030401M01.do" target="_blank">시가표준액</a>
+        <a class="link land" href="https://www.realtyprice.kr" target="_blank">토지공시지가</a>
+        <a class="link appraised" href="https://www.wetax.go.kr/tcp/loi/J030901M01.do" target="_blank">시가인정액</a>
+        <a class="link wetax" href="https://www.wetax.go.kr/etq/etp/epi/E070101M01.do" target="_blank">위택스</a>
+        <a class="link law" href="https://www.law.go.kr/LSW/lsSc.do?query=%EC%A7%80%EB%B0%A9%EC%84%B8%EB%B2%95" target="_blank">지방세법</a>
       </div>
     </nav>
 
-    <div class="ai-help" aria-label="도움말">
-      <a href="https://chat.openai.com" target="_blank" rel="noopener" class="ai-btn">🤖 AI와 지방세 상담하기</a>
+    <div class="ai-help">
+      <a href="https://chat.openai.com" target="_blank" class="ai-btn">🤖 AI와 지방세 상담하기</a>
     </div>
   </main>
 
   <script>
-    // 서비스워커
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js').catch(console.error);
       });
     }
 
-    // 스플래시 3.5초 후 페이드아웃
     window.addEventListener('load', () => {
-      const splash = document.getElementById('splash');
-      setTimeout(() => {
-        splash.classList.add('fade-out');
-        setTimeout(() => splash && splash.remove(), 900);
-      }, 3500);
+      const splash=document.getElementById('splash');
+      setTimeout(()=>{splash.classList.add('fade-out');setTimeout(()=>splash&&splash.remove(),900);},3500);
     });
 
-    // 메인 헤더 TAXy 글로우 10초 후 정지
-    window.addEventListener('load', () => {
-      const brand = document.querySelector('.brand-inline .taxy');
-      if (!brand) return;
-      const stopAfterMs = 10000;
-      setTimeout(() => { brand.style.animation = 'none'; }, stopAfterMs);
+    window.addEventListener('load',()=>{
+      const brand=document.querySelector('.brand-inline .taxy');
+      if(!brand)return;
+      setTimeout(()=>{brand.style.animation='none';},10000);
     });
   </script>
 </body>
 </html>
-
-
-
-
