@@ -47,6 +47,11 @@
     }
     #splash.fade-out{opacity:0;pointer-events:none;}
     #splash .mark{font-size:48px;}
+
+    /* TAXy + TAX+EASY 한줄 */
+    #splash .brand-line{
+      display:flex;align-items:center;gap:14px;justify-content:center;
+    }
     #splash .taxy{
       font-size:2.4rem;font-weight:1000;letter-spacing:-.03em;
       background:linear-gradient(90deg,var(--accent-start),var(--accent-mid),var(--accent-end));
@@ -61,12 +66,15 @@
       box-shadow:0 6px 18px rgba(59,130,246,.35),inset 0 0 0 1px rgba(255,255,255,.35);
     }
     #splash .tag{
-      font-size:1.38rem;font-weight:900;color:#c7d2fe;opacity:.95;
+      font-size:1.15rem;font-weight:900;color:#c7d2fe;opacity:.95;
       padding:.55rem .95rem;border:1px solid rgba(99,102,241,.35);
       border-radius:999px;background:rgba(37,99,235,.18);
     }
+
+    /* 서브문구 */
     #splash .sub{
-      font-size:1.25rem;font-weight:900;color:#dbeafe;
+      font-size:1.15rem; /* ← 1단계 키움 */
+      font-weight:900;color:#dbeafe;
       animation:fadeInUp .9s ease-out .2s both,shine 1.8s ease-in-out 2 .6s;
     }
 
@@ -78,6 +86,7 @@
     .logo .title-text{font-weight:900;letter-spacing:-0.02em;font-size:1.4rem;}
     .spacer{flex:1}
     .brand-inline{display:flex;align-items:center;gap:8px}
+    .brand-inline .prefix{font-size:1rem;font-weight:800;color:#e5e7eb;opacity:.9;margin-right:.3rem;}
     .brand-inline .taxy{
       font-size:1.4rem;font-weight:1000;letter-spacing:-.03em;
       background:linear-gradient(90deg,var(--accent-start),var(--accent-mid),var(--accent-end));
@@ -90,14 +99,6 @@
       background:linear-gradient(135deg,#93c5fd,#3b82f6);
       color:#0b1220;-webkit-text-fill-color:initial;
       box-shadow:0 6px 18px rgba(59,130,246,.35),inset 0 0 0 1px rgba(255,255,255,.35);
-    }
-    .brand-inline .tag{
-      font-size:1.0rem;font-weight:900;color:#c7d2fe;opacity:.95;
-      padding:.35rem .65rem;border:1px solid rgba(99,102,241,.35);
-      border-radius:999px;background:rgba(37,99,235,.18);
-    }
-    .brand-inline .prefix{
-      font-size:1rem;font-weight:800;color:#e5e7eb;opacity:.9;margin-right:.3rem;
     }
 
     /* 카드 */
@@ -150,9 +151,11 @@
   <!-- 스플래시 -->
   <div id="splash">
     <div class="mark">💠</div>
-    <div class="taxy">TAX<span class="brand-y">y</span></div>
-    <div class="tag">TAX&nbsp;+&nbsp;EASY</div>
     <div class="sub">더 편리한 세무 AI</div>
+    <div class="brand-line">
+      <div class="taxy">TAX<span class="brand-y">y</span></div>
+      <div class="tag">TAX&nbsp;+&nbsp;EASY</div>
+    </div>
   </div>
 
   <!-- 헤더 -->
