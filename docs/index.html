@@ -33,9 +33,9 @@
       --ql-app-bg:#ffe8e8;   --ql-app-br:#ffc8c8;
       --ql-land-bg:#e0f2fe;  --ql-land-br:#b9e6ff;
 
-      /* Brand accent for TAXy */
+      /* TAXy brand */
       --accent-start:#22d3ee; --accent-mid:#60a5fa; --accent-end:#a78bfa;
-      --gold:#facc15;
+      --glow:#93c5fd; /* 글로우 공통 색 */
     }
     body{margin:0;font-family:Pretendard,system-ui,-apple-system,Segoe UI,Roboto,Noto Sans KR,sans-serif;background:var(--bg);color:var(--text)}
     a, .tile a, .quick-links a, .go { text-decoration:none !important; }
@@ -45,7 +45,10 @@
     .appbar{display:flex;align-items:center;gap:10px;padding:16px 24px}
     .logo{display:flex;align-items:center;gap:10px}
     .logo .badge{display:grid;place-items:center;width:34px;height:34px;border-radius:9px;background:#111827;border:1px solid var(--line);box-shadow:0 6px 18px var(--shadow)}
-    .logo .title-text{font-weight:900;letter-spacing:-0.02em;font-size:1.4rem;}
+    .logo .title-text{
+      font-weight:900;letter-spacing:-0.02em;font-size:1.4rem;
+      text-shadow:0 0 10px rgba(147,197,253,.25), 0 0 18px rgba(99,102,241,.18); /* 본문 글로우(헤더) */
+    }
     .spacer{flex:1}
     .btn-install{appearance:none;border:1px solid var(--line);background:rgba(255,255,255,.9);color:#000;font-weight:800;border-radius:10px;padding:8px 12px;cursor:pointer;box-shadow:0 6px 18px var(--shadow);}
     .btn-install.hidden{display:none}
@@ -55,9 +58,15 @@
     .card:hover{transform:translateY(-2px)}
     .tile{display:flex;flex-direction:column;justify-content:space-between;min-height:160px;padding:18px;color:#fff;border-radius:16px}
     .tile .icon{font-size:25px;line-height:1;margin-bottom:6px;}
-    .tile .name{font-size:20px;font-weight:950;}
+    .tile .name{
+      font-size:20px;font-weight:950;
+      text-shadow:0 0 10px rgba(147,197,253,.25), 0 0 18px rgba(99,102,241,.18); /* 본문 글로우(카드 제목) */
+    }
     .tile .desc{font-size:16px;font-weight:600;opacity:.95;}
-    .tile .go{margin-top:18px;display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.18);backdrop-filter:blur(3px);font-weight:900;font-size:15px;font-family:"Segoe UI","Roboto","Helvetica Neue",Arial,sans-serif;letter-spacing:.3px;}
+    .tile .go{
+      margin-top:18px;display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.18);backdrop-filter:blur(3px);font-weight:900;font-size:15px;font-family:"Segoe UI","Roboto","Helvetica Neue",Arial,sans-serif;letter-spacing:.3px;
+      box-shadow:0 0 14px rgba(147,197,253,.18); /* 버튼 약한 글로우 */
+    }
     .t1{background:var(--tile1)}.t2{background:var(--tile2)}.t3{background:var(--tile3)}.t4{background:var(--tile4)}
 
     /* Quick links */
@@ -65,6 +74,7 @@
     .quick-links .row{display:flex;gap:6px;align-items:center;overflow:auto;white-space:nowrap}
     .quick-links .label{font-weight:800;color:var(--ql-text);padding:4px 6px;font-size:15px;border:1px solid #dbe0ff;border-radius:8px;background:none;}
     .quick-links a{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid var(--ql-border);font-weight:700;white-space:nowrap;font-size:13px;color:var(--ql-text);}
+
     .link.law{background:var(--ql-law-bg);border-color:var(--ql-law-br);}
     .link.wetax{background:var(--ql-wetax-bg);border-color:var(--ql-wetax-br);}
     .link.value{background:var(--ql-value-bg);border-color:var(--ql-value-br);}
@@ -73,72 +83,61 @@
     .link.land{background:var(--ql-land-bg);border-color:var(--ql-land-br);}
 
     .ai-help{margin-top:18px;text-align:center;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
-    .ai-btn, .gu-office{display:inline-block;padding:12px 20px;border-radius:12px;font-weight:900;font-size:16px;color:#fff;box-shadow:0 6px 18px var(--shadow);transition:background .2s, transform .1s;}
+    .ai-btn, .gu-office{display:inline-block;padding:12px 20px;border-radius:12px;font-weight:900;font-size:16px;color:#fff;box-shadow:0 6px 18px var(--shadow), 0 0 18px rgba(99,102,241,.18);transition:background .2s, transform .1s;}
     .ai-btn{background:#ef4444;}
     .ai-btn:hover{background:#dc2626;transform:translateY(-2px);}
     .gu-office{background:#2563eb;}
     .gu-office:hover{background:#1e40af;transform:translateY(-2px);}
 
-    /* ---------- Splash (updated) ---------- */
+    /* ---------- Splash (cross-browser glow, 화살표 제거) ---------- */
     #splash{
       position:fixed; inset:0; z-index:10000;
       display:flex; flex-direction:column; align-items:center; justify-content:center;
       gap:18px; text-align:center; color:#fff;
-      background: radial-gradient(1200px 600px at 50% -10%, rgba(37,99,235,.35), transparent 60%), #0b1220;
+      background:
+        radial-gradient(1200px 600px at 50% -10%, rgba(37,99,235,.35), transparent 60%),
+        #0b1220;
       opacity:1; transition:opacity .8s ease;
       padding:24px;
+      will-change: opacity, transform;
     }
-    #splash .mark{font-size:48px; line-height:1;}
-
-    /* 브랜드 라인(크기 업) */
-    #splash .brand-line{display:flex; align-items:center; gap:12px; justify-content:center; font-weight:900;}
+    #splash .mark{
+      font-size:48px; line-height:1;
+      filter:drop-shadow(0 6px 18px rgba(37,99,235,.45));
+    }
+    #splash .brand-line{
+      display:flex; align-items:center; gap:12px; justify-content:center; font-weight:900;
+    }
     #splash .taxy{
       font-size:2.15rem; font-weight:1000; letter-spacing:-0.03em;
       background: linear-gradient(90deg, var(--accent-start), var(--accent-mid), var(--accent-end));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      position:relative;
+      -webkit-background-clip: text; background-clip:text;
+      -webkit-text-fill-color: transparent; color:transparent;
+      text-shadow:0 0 10px rgba(147,197,253,.55), 0 0 22px rgba(99,102,241,.35);
+      filter: drop-shadow(0 4px 18px rgba(99,102,241,.25));
     }
     #splash .brand-y{
       display:inline-grid; place-items:center;
       width:1.45em; height:1.45em; border-radius:0.4em;
       background:linear-gradient(135deg,#93c5fd,#3b82f6);
       color:#0b1220; -webkit-text-fill-color:initial;
-      box-shadow:0 6px 18px rgba(59,130,246,.35), inset 0 0 0 1px rgba(255,255,255,.35);
+      box-shadow:0 6px 18px rgba(59,130,246,.35), inset 0 0 0 1px rgba(255,255,255,.35), 0 0 20px rgba(147,197,253,.45);
       font-weight:1000;
-      position:relative;
-      overflow:visible;
+      position:relative; overflow:visible;
     }
-    /* y 밑에 TAX를 가리키는 화살표 */
-    #splash .brand-y::after{
-      content:"";
-      position:absolute;
-      left:-14px; bottom:-10px;
-      width:28px; height:28px;
-      border-left:3px solid rgba(147,197,253,.95);
-      border-top:3px solid rgba(147,197,253,.95);
-      border-radius:4px;
-      transform:rotate(-35deg);
-      box-shadow:0 0 8px rgba(147,197,253,.45);
-    }
-    /* 화살촉 */
-    #splash .brand-y::before{
-      content:"";
-      position:absolute;
-      left:-16px; bottom:-16px;
-      width:0; height:0;
-      border:7px solid transparent;
-      border-left-color:rgba(147,197,253,.95);
-      transform:rotate(45deg);
-      filter:drop-shadow(0 0 6px rgba(147,197,253,.45));
-    }
+    /* (요청) 화살표 장식 제거: ::before / ::after 없음 */
 
-    /* 서브 카피(크기 업) */
+    #splash .tag{
+      font-size:.9rem;font-weight:900;color:#c7d2fe;opacity:.95;
+      padding:.35rem .6rem;border:1px solid rgba(99,102,241,.38);border-radius:999px;background:rgba(37,99,235,.22);
+      box-shadow:0 0 14px rgba(99,102,241,.25);
+    }
     #splash .sub{
       font-size:1.22rem;
       opacity:.96; font-weight:900; letter-spacing:.02em;
       color:#dbeafe;
+      text-shadow:0 0 12px rgba(125,211,252,.35);
     }
-
     #splash.fade-out{opacity:0; pointer-events:none;}
   </style>
 </head>
@@ -149,7 +148,7 @@
     <div class="mark">💠</div>
     <div class="brand-line" aria-label="브랜드">
       <span class="taxy">TAX<span class="brand-y">y</span></span>
-      <span class="tag" style="font-size:.85rem;font-weight:900;color:#c7d2fe;opacity:.9;padding:.35rem .6rem;border:1px solid rgba(99,102,241,.35);border-radius:999px;background:rgba(37,99,235,.18);">TAX&nbsp;+&nbsp;EASY</span>
+      <span class="tag">TAX&nbsp;+&nbsp;EASY</span>
     </div>
     <div class="sub">더 편리한 세무 AI</div>
   </div>
@@ -231,6 +230,7 @@
     const splash = document.getElementById('splash');
     const DURATION = 3500; // 3.5s 고정
     window.addEventListener('load', () => {
+      requestAnimationFrame(() => { splash.style.willChange = 'opacity, transform'; });
       setTimeout(() => {
         splash.classList.add('fade-out');
         setTimeout(() => splash && splash.remove(), 900);
