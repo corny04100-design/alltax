@@ -33,9 +33,7 @@
       --ql-house-bg:#f3e8ff; --ql-house-br:#e3caff;
       --ql-app-bg:#ffe8e8; --ql-app-br:#ffc8c8;
       --ql-land-bg:#e0f2fe; --ql-land-br:#b9e6ff;
-
-      /* 지방세 달력(연오렌지 톤) */
-      --ql-cal-bg:#fff1e6; --ql-cal-br:#ffd9bf;
+      --ql-cal-bg:#fff1e6; --ql-cal-br:#ffd9bf; /* 지방세 달력 */
 
       --accent-start:#22d3ee; --accent-mid:#60a5fa; --accent-end:#a78bfa;
       --glow-dur:1.21s;
@@ -56,15 +54,10 @@
       --line:rgba(0,0,0,.08); --shadow:rgba(0,0,0,.18);
     }
 
-    :root[data-theme="dark"]{
-      /* 이미 기본이 다크이므로 별도 지정 없이 유지 */
-    }
-
-    /* ================= 공통 레이아웃 ================= */
     body{margin:0;font-family:Pretendard,system-ui,-apple-system,Segoe UI,Roboto,Noto Sans KR,sans-serif;background:var(--bg);color:var(--text)}
     a{text-decoration:none;color:inherit;}
 
-    /* 스플래시 */
+    /* ================= 스플래시 ================= */
     #splash{
       position:fixed; inset:0; z-index:10000;
       display:flex; flex-direction:column; justify-content:center; align-items:center;
@@ -74,8 +67,6 @@
     }
     #splash.fade-out{opacity:0;pointer-events:none;}
     #splash .mark{font-size:48px;}
-
-    /* TAXy + TAX+EASY 한줄 */
     #splash .brand-line{display:flex;align-items:center;gap:14px;justify-content:center;}
     #splash .taxy{
       font-size:2.4rem;font-weight:1000;letter-spacing:-.03em;
@@ -101,31 +92,17 @@
       animation:fadeInUp .9s ease-out .2s both,shine 1.8s ease-in-out 2 .6s;
     }
 
-    /* 헤더 */
-    header{position:sticky;top:0;z-index:9;background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,0));backdrop-filter:saturate(120%) blur(8px);}
-    .appbar{display:flex;align-items:center;gap:10px;padding:16px 24px;max-width:1080px;margin:0 auto;}
+    /* ================= 헤더 (상단 고정) ================= */
+    header{
+      position:sticky; top:0; z-index:9;
+      background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,0));
+      backdrop-filter:saturate(120%) blur(8px);
+    }
+    .appbar{display:flex;align-items:center;gap:10px;padding:12px 24px;max-width:1080px;margin:0 auto;}
     .logo{display:flex;align-items:center;gap:10px}
     .logo .badge{width:34px;height:34px;display:grid;place-items:center;border-radius:9px;background:#111827;border:1px solid var(--line);box-shadow:0 6px 18px var(--shadow)}
     .logo .title-text{font-weight:900;letter-spacing:-0.02em;font-size:1.4rem;}
     .spacer{flex:1}
-    .brand-inline{display:flex;align-items:center;gap:8px}
-    .brand-inline .prefix{font-size:1rem;font-weight:800;opacity:.9;margin-right:.3rem;}
-    .brand-inline .taxy{
-      font-size:1.55rem;font-weight:1000;letter-spacing:-.03em;
-      background:linear-gradient(90deg,var(--accent-start),var(--accent-mid),var(--accent-end));
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-      animation:glowStrong var(--glow-dur) ease-in-out infinite;
-      filter: drop-shadow(0 0 10px rgba(125,211,252,.35));
-    }
-    .brand-inline .brand-y{
-      display:inline-grid;place-items:center;
-      height:1.45em;padding:0 .28em;border-radius:.4em;
-      background:linear-gradient(135deg,#93c5fd,#3b82f6);
-      color:#0b1220;-webkit-text-fill-color:initial;
-      box-shadow:0 6px 18px rgba(59,130,246,.35),inset 0 0 0 1px rgba(255,255,255,.35);
-    }
-
-    /* 테마 토글 버튼 */
     .theme-toggle{
       margin-left:10px; appearance:none; border:1px solid var(--line);
       background:rgba(255,255,255,.12); color:var(--text);
@@ -133,8 +110,30 @@
       box-shadow:0 6px 18px var(--shadow);
     }
 
-    /* 카드 */
-    .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));max-width:1080px;margin:0 auto;padding:24px;}
+    /* ================= 브랜드 히어로(헤더 아래 중앙) ================= */
+    .brand-hero{
+      max-width:1080px;margin:6px auto 0 auto;
+      display:flex;justify-content:center;align-items:center;gap:10px;
+      text-align:center;padding:6px 24px;
+    }
+    .brand-hero .prefix{font-size:1rem;font-weight:800;opacity:.9;}
+    .brand-hero .taxy{
+      font-size:1.6rem;font-weight:1000;letter-spacing:-.03em;
+      background:linear-gradient(90deg,var(--accent-start),var(--accent-mid),var(--accent-end));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      animation:glowStrong var(--glow-dur) ease-in-out infinite;
+      filter: drop-shadow(0 0 10px rgba(125,211,252,.35));
+    }
+    .brand-hero .brand-y{
+      display:inline-grid;place-items:center;
+      height:1.45em;padding:0 .28em;border-radius:.4em;
+      background:linear-gradient(135deg,#93c5fd,#3b82f6);
+      color:#0b1220;-webkit-text-fill-color:initial;
+      box-shadow:0 6px 18px rgba(59,130,246,.35),inset 0 0 0 1px rgba(255,255,255,.35);
+    }
+
+    /* ================= 카드/퀵링크/버튼 ================= */
+    .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));max-width:1080px;margin:8px auto 0;padding:24px;}
     .card{border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 26px var(--shadow);transition:transform .2s;background:var(--card)}
     .card:hover{transform:translateY(-2px)}
     .tile{display:flex;flex-direction:column;justify-content:space-between;min-height:160px;padding:18px;color:#fff;border-radius:16px}
@@ -144,7 +143,7 @@
     .tile .go{margin-top:18px;display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.18);backdrop-filter:blur(3px);font-weight:900;font-size:15px;}
     .t1{background:var(--tile1)} .t2{background:var(--tile2)} .t3{background:var(--tile3)} .t4{background:var(--tile4)}
 
-    .quick-links{margin:18px auto;padding:10px;max-width:1080px;border:1px solid var(--ql-border);background:var(--ql-bg);border-radius:12px}
+    .quick-links{margin:6px auto 18px;padding:10px;max-width:1080px;border:1px solid var(--ql-border);background:var(--ql-bg);border-radius:12px}
     .quick-links .row{display:flex;gap:6px;align-items:center;overflow:auto;white-space:nowrap}
     .quick-links .label{font-weight:800;color:var(--ql-text);padding:4px 6px;font-size:15px;border:1px solid #dbe0ff;border-radius:8px;background:none;}
     .quick-links a{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid var(--ql-border);font-weight:700;white-space:nowrap;font-size:13px;color:var(--ql-text);}
@@ -160,7 +159,7 @@
     .ai-btn{padding:12px 20px;border-radius:12px;font-weight:900;font-size:16px;color:#fff;background:#ef4444;box-shadow:0 6px 18px var(--shadow);transition:background .2s, transform .1s;}
     .ai-btn:hover{background:#dc2626;transform:translateY(-2px);}
 
-    /* 애니메이션 */
+    /* ================= 애니메이션 ================= */
     @keyframes glowStrong {
       0%{opacity:1;filter:drop-shadow(0 0 0 rgba(125,211,252,0));}
       15%{opacity:.45;filter:drop-shadow(0 0 30px rgba(125,211,252,.65));}
@@ -191,7 +190,7 @@
     </div>
   </div>
 
-  <!-- 헤더 -->
+  <!-- 헤더(상단 고정: 좌측 제목 / 우측 테마 토글) -->
   <header>
     <div class="appbar">
       <div class="logo">
@@ -199,13 +198,15 @@
         <span class="title-text">2025년 지방세 계산</span>
       </div>
       <div class="spacer"></div>
-      <div class="brand-inline">
-        <span class="prefix">더 편리한 세무AI</span>
-        <span class="taxy">TAX<span class="brand-y">y</span></span>
-      </div>
       <button id="btnTheme" class="theme-toggle" aria-label="테마 전환">🌗 Auto</button>
     </div>
   </header>
+
+  <!-- 헤더 바로 아래 중앙 브랜드 라인 -->
+  <div class="brand-hero" aria-label="브랜드 히어로">
+    <span class="prefix">더 편리한 세무AI</span>
+    <span class="taxy">TAX<span class="brand-y">y</span></span>
+  </div>
 
   <!-- 메인 -->
   <main>
@@ -247,7 +248,6 @@
         <a class="link value" href="https://www.wetax.go.kr/tcp/loi/J030401M01.do" target="_blank" rel="noopener">시가표준액</a>
         <a class="link land" href="https://www.realtyprice.kr" target="_blank" rel="noopener">토지공시지가</a>
         <a class="link appraised" href="https://www.wetax.go.kr/tcp/loi/J030901M01.do" target="_blank" rel="noopener">시가인정액</a>
-        <!-- ✅ 지방세 달력 복원 -->
         <a class="link calendar" href="https://www.wetax.go.kr/tcp/loi/J030104M01.do" target="_blank" rel="noopener">지방세 달력</a>
         <a class="link wetax" href="https://www.wetax.go.kr/etq/etp/epi/E070101M01.do" target="_blank" rel="noopener">위택스</a>
         <a class="link law" href="https://www.law.go.kr/LSW/lsSc.do?query=%EC%A7%80%EB%B0%A9%EC%84%B8%EB%B2%95" target="_blank" rel="noopener">지방세법</a>
@@ -279,7 +279,6 @@
       const metaTheme = document.querySelector('meta[name="theme-color"]');
 
       function applyTheme(mode){
-        // mode: 'light' | 'dark' | 'auto'
         const root = document.documentElement;
         if(mode === 'light'){
           root.setAttribute('data-theme','light');
@@ -292,21 +291,15 @@
         }else{
           root.removeAttribute('data-theme');
           btn.textContent = '🌗 Auto';
-          // Auto: 따라가는 쪽으로 설정
           const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
           metaTheme && metaTheme.setAttribute('content', prefersLight ? '#f9fafb' : '#0b1220');
         }
       }
+      function getNext(mode){ return mode==='light' ? 'dark' : mode==='dark' ? 'auto' : 'light'; }
 
-      function getNext(mode){
-        return mode==='light' ? 'dark' : mode==='dark' ? 'auto' : 'light';
-      }
-
-      // 초기화
       let mode = localStorage.getItem('theme') || 'auto';
       applyTheme(mode);
 
-      // 시스템 변경 감지 시 Auto면 업데이트
       const mql = window.matchMedia('(prefers-color-scheme: light)');
       mql.addEventListener?.('change', ()=>{ if((localStorage.getItem('theme')||'auto')==='auto') applyTheme('auto'); });
 
@@ -317,13 +310,12 @@
       });
     })();
 
-    // -------- 헤더 TAXy 글로우 10초 후 정지 --------
+    // -------- 메인 브랜드 글로우 10초 후 정지 --------
     window.addEventListener('load',()=>{
-      const brand=document.querySelector('.brand-inline .taxy');
+      const brand=document.querySelector('.brand-hero .taxy');
       if(!brand)return;
       setTimeout(()=>{brand.style.animation='none';brand.style.filter='none';},10000);
     });
   </script>
 </body>
 </html>
-
