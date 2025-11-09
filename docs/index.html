@@ -149,12 +149,18 @@
     .tile .icon{font-size:22px;margin-bottom:0;flex:none;}
     .tile .name{font-size:18px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
     .tile .desc{font-size:14px;font-weight:600;opacity:.9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-    /* '바로가기' 버튼 제거로 관련 스타일도 사용 안 함 */
-
     .t1{background:var(--tile1)} .t2{background:var(--tile2)} .t3{background:var(--tile3)} .t4{background:var(--tile4)}
 
-    .quick-links{margin:6px auto 18px;padding:10px;max-width:1080px;border:1px solid var(--ql-border);background:var(--ql-bg);border-radius:12px}
-    .quick-links .row{display:flex;gap:6px;align-items:center;overflow:auto;white-space:nowrap}
+    .quick-links{
+      position:relative; /* 힌트/페이드용 */
+      overflow:visible;
+      margin:6px auto 18px;padding:10px;max-width:1080px;
+      border:1px solid var(--ql-border);background:var(--ql-bg);border-radius:12px
+    }
+    .quick-links .row{
+      display:flex;gap:6px;align-items:center;overflow:auto;white-space:nowrap;
+      scroll-behavior:smooth;
+    }
     .quick-links .label{font-weight:800;color:var(--ql-text);padding:4px 6px;font-size:15px;border:1px solid #dbe0ff;border-radius:8px;background:none;}
     .quick-links a{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid var(--ql-border);font-weight:700;white-space:nowrap;font-size:13px;color:var(--ql-text);}
     .link.law{background:var(--ql-law-bg);border-color:var(--ql-law-br);}
@@ -164,6 +170,50 @@
     .link.appraised{background:var(--ql-app-bg);border-color:var(--ql-app-br);}
     .link.land{background:var(--ql-land-bg);border-color:var(--ql-land-br);}
     .link.calendar{background:var(--ql-cal-bg);border-color:var(--ql-cal-br);} /* 지방세 달력 */
+
+    /* ===== 가로 스크롤 힌트: 양쪽 페이드 & 아이콘 ===== */
+    .quick-links.overflow-x::before,
+    .quick-links.overflow-x::after{
+      content:"";
+      position:absolute; top:0; bottom:0; width:28px; pointer-events:none;
+      z-index:1;
+    }
+    .quick-links.overflow-x::before{
+      left:0;
+      background:linear-gradient(to right, var(--ql-bg), rgba(255,255,255,0));
+    }
+    .quick-links.overflow-x::after{
+      right:0;
+      background:linear-gradient(to left, var(--ql-bg), rgba(255,255,255,0));
+    }
+    .quick-links.at-start::before{ opacity:0; }
+    .quick-links.at-end::after{ opacity:0; }
+    .quick-links.overflow-x::before,
+    .quick-links.overflow-x::after{ transition:opacity .25s ease; }
+
+    .quick-links .scroll-hint{
+      display:none;
+    }
+    .quick-links.overflow-x .scroll-hint{
+      display:block;
+      position:absolute; right:10px; bottom:8px;
+      font-weight:800; font-size:12px; line-height:1;
+      color:#64748b; background:rgba(255,255,255,.85);
+      border:1px solid var(--ql-border); border-radius:999px;
+      padding:4px 8px; box-shadow:0 6px 18px var(--shadow);
+      z-index:2; user-select:none; pointer-events:none;
+      animation:nudge 1.6s ease-in-out infinite;
+    }
+    :root[data-theme="dark"] .quick-links.overflow-x .scroll-hint{
+      background:rgba(2,6,23,.8); color:#cbd5e1;
+    }
+    @keyframes nudge{
+      0%,100%{ transform:translateX(0); opacity:.9; }
+      50%{ transform:translateX(-8px); opacity:1; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .quick-links.overflow-x .scroll-hint{ animation:none; }
+    }
 
     .ai-help{text-align:center;margin:20px 0;}
     .ai-btn{padding:12px 20px;border-radius:12px;font-weight:900;font-size:16px;color:#fff;background:#ef4444;box-shadow:0 6px 18px var(--shadow);transition:background .2s, transform .1s;}
@@ -273,6 +323,8 @@
         <a class="link wetax" href="https://www.wetax.go.kr/etq/etp/epi/E070101M01.do" target="_blank" rel="noopener">위택스</a>
         <a class="link law" href="https://www.law.go.kr/LSW/lsSc.do?query=%EC%A7%80%EB%B0%A9%EC%84%B8%EB%B2%95" target="_blank" rel="noopener">지방세법</a>
       </div>
+      <!-- ⟷ 스크롤 힌트 배지 -->
+      <div class="scroll-hint" aria-hidden="true">⟷ 스크롤</div>
     </nav>
 
     <div class="ai-help" aria-label="도움말">
@@ -337,8 +389,40 @@
       if(!brand)return;
       setTimeout(()=>{brand.style.animation='none';brand.style.filter='none';},10000);
     });
+
+    // -------- 퀵링크 가로 오버플로 감지 & 페이드/힌트 제어 --------
+    (function(){
+      const ql = document.querySelector('.quick-links');
+      const row = ql?.querySelector('.row');
+      if(!ql || !row) return;
+
+      function updateEdges(){
+        const maxScroll = row.scrollWidth - row.clientWidth;
+        const x = row.scrollLeft;
+        if (maxScroll > 2) ql.classList.add('overflow-x');
+        else ql.classList.remove('overflow-x');
+
+        ql.classList.toggle('at-start', x <= 2);
+        ql.classList.toggle('at-end',   x >= maxScroll - 2);
+      }
+
+      updateEdges();
+      row.addEventListener('scroll', updateEdges, {passive:true});
+      window.addEventListener('resize', updateEdges);
+
+      // 첫 스크롤 후 힌트 서서히 제거
+      let hinted = false;
+      row.addEventListener('scroll', ()=>{
+        if(hinted) return;
+        hinted = true;
+        const hint = ql.querySelector('.scroll-hint');
+        if(hint){
+          hint.style.transition = 'opacity .5s ease .4s';
+          hint.style.opacity = '0';
+          setTimeout(()=> hint.remove(), 1200);
+        }
+      }, {passive:true});
+    })();
   </script>
 </body>
 </html>
-
-
