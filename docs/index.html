@@ -70,12 +70,13 @@
     #splash .mark{font-size:48px;}
     #splash .brand-line{display:flex;align-items:center;gap:14px;justify-content:center;}
     #splash .taxy{
-      font-size:2.4rem;font-weight:1000;letter-spacing:-.03em;
-      background:linear-gradient(90deg,var(--accent-start),var(--accent-mid),var(--accent-end));
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-      animation:glowStrong var(--glow-dur) ease-in-out infinite;
-      filter: drop-shadow(0 0 10px rgba(125,211,252,.35));
-    }
+  font-size:2.4rem;font-weight:1000;letter-spacing:-.03em;
+  background:linear-gradient(90deg,var(--accent-start),var(--accent-mid),var(--accent-end));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  /* 50% 느리게: 기본 지속시간의 1.5배 */
+  animation:glowStrong calc(var(--glow-dur) * 1.5) ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(125,211,252,.35));
+}
     #splash .brand-y{
       display:inline-grid;place-items:center;
       height:1.45em;padding:0 .28em;border-radius:.4em;
@@ -415,5 +416,6 @@
   </script>
 </body>
 </html>
+
 
 
