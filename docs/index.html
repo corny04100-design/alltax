@@ -178,11 +178,19 @@
   align-items:center;
   overflow:auto;
   white-space:nowrap;
-  padding-top:3px; /* ← 추가: 스크롤바가 아주 살짝(3px) 아래로 내려감 */
+  padding-top:5px; /* ← 추가: 스크롤바가 아주 살짝(3px) 아래로 내려감 */
 }
       scroll-behavior:smooth;
     }
-    .quick-links .label{font-weight:800;color:var(--ql-text);padding:4px 6px;font-size:15px;border:1px solid #dbe0ff;border-radius:8px;background:none;}
+    .quick-links .label{
+  font-weight:800;
+  color:#000000;        /* ← 검은색으로 변경 */
+  padding:4px 6px;
+  font-size:14px;       /* ← 15px → 14px (1단계 축소) */
+  border:1px solid #dbe0ff;
+  border-radius:8px;
+  background:none;
+}
     .quick-links a{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid var(--ql-border);font-weight:700;white-space:nowrap;font-size:13px;color:var(--ql-text);}
     .link.law{background:var(--ql-law-bg);border-color:var(--ql-law-br);}
     .link.wetax{background:var(--ql-wetax-bg);border-color:var(--ql-wetax-br);}
@@ -447,5 +455,6 @@
   </script>
 </body>
 </html>
+
 
 
