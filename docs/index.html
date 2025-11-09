@@ -180,13 +180,13 @@
       z-index:1;
     }
     .quick-links.overflow-x::before{
-      left:0;
-      background:linear-gradient(to right, var(--ql-bg), rgba(255,255,255,0));
-    }
-    .quick-links.overflow-x::after{
-      right:0;
-      background:linear-gradient(to left, var(--ql-bg), rgba(255,255,255,0));
-    }
+  left:0;
+  background:linear-gradient(to right, rgba(var(--ql-bg-rgb),0.6), rgba(255,255,255,0));
+}
+.quick-links.overflow-x::after{
+  right:0;
+  background:linear-gradient(to left, rgba(var(--ql-bg-rgb),0.6), rgba(255,255,255,0));
+}
     .quick-links.at-start::before{ opacity:0; }
     .quick-links.at-end::after{ opacity:0; }
     .quick-links.overflow-x::before,
@@ -427,4 +427,5 @@
   </script>
 </body>
 </html>
+
 
