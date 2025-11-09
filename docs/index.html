@@ -131,12 +131,13 @@
       color:#0b1220;-webkit-text-fill-color:initial;
       box-shadow:0 6px 18px rgba(59,130,246,.35),inset 0 0 0 1px rgba(255,255,255,.35);
     }
-
     /* ================= 카드/퀵링크/버튼 ================= */
-    .grid{
-      display:grid;gap:16px;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      max-width:1080px;margin:8px auto 0;padding:24px;
+    /* 위쪽 여백 8px → 4px, 패딩 상단 24px → 12px (합계 32px → 16px) */
+   .grid{
+     display:grid;gap:16px;
+     grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+     max-width:1080px;margin:4px auto 0;
+     padding:12px 24px 24px;
     }
     .card{border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 26px var(--shadow);transition:transform .2s;background:var(--card)}
     .card:hover{transform:translateY(-2px)}
@@ -426,3 +427,4 @@
   </script>
 </body>
 </html>
+
