@@ -173,7 +173,13 @@
       border:1px solid var(--ql-border);background:var(--ql-bg);border-radius:12px
     }
     .quick-links .row{
-      display:flex;gap:6px;align-items:center;overflow:auto;white-space:nowrap;
+  display:flex;
+  gap:6px;
+  align-items:center;
+  overflow:auto;
+  white-space:nowrap;
+  padding-top:3px; /* ← 추가: 스크롤바가 아주 살짝(3px) 아래로 내려감 */
+}
       scroll-behavior:smooth;
     }
     .quick-links .label{font-weight:800;color:var(--ql-text);padding:4px 6px;font-size:15px;border:1px solid #dbe0ff;border-radius:8px;background:none;}
@@ -441,3 +447,4 @@
   </script>
 </body>
 </html>
+
