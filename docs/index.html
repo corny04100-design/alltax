@@ -34,6 +34,7 @@
       --ql-app-bg:#ffe8e8; --ql-app-br:#ffc8c8;
       --ql-land-bg:#e0f2fe; --ql-land-br:#b9e6ff;
       --ql-cal-bg:#fff1e6; --ql-cal-br:#ffd9bf; /* 지방세 달력 */
+      --ql-bg-rgb:255,255,255; /* 페이드용 RGB */
 
       --accent-start:#22d3ee; --accent-mid:#60a5fa; --accent-end:#a78bfa;
       --glow-dur:1.21s;
@@ -162,6 +163,48 @@
     .link.land{background:var(--ql-land-bg);border-color:var(--ql-land-br);}
     .link.calendar{background:var(--ql-cal-bg);border-color:var(--ql-cal-br);} /* 지방세 달력 */
 
+    /* ── Quick Links: 가로 스크롤 가장자리 페이드 & 힌트 (복원) ── */
+    .quick-links.overflow-x::before,
+    .quick-links.overflow-x::after{
+      content:"";
+      position:absolute; top:0; bottom:0; width:36px; pointer-events:none; z-index:1;
+      opacity:1;
+    }
+    .quick-links.overflow-x::before{
+      left:0;
+      background:linear-gradient(to right, rgba(var(--ql-bg-rgb),0.6), rgba(255,255,255,0));
+    }
+    .quick-links.overflow-x::after{
+      right:0;
+      background:linear-gradient(to left, rgba(var(--ql-bg-rgb),0.6), rgba(255,255,255,0));
+    }
+    .quick-links.at-start::before{ opacity:0; }
+    .quick-links.at-end::after{ opacity:0; }
+    .quick-links.overflow-x::before,
+    .quick-links.overflow-x::after{ transition:opacity .25s ease; }
+
+    .quick-links .scroll-hint{ display:none; }
+    .quick-links.overflow-x .scroll-hint{
+      display:block;
+      position:absolute; right:10px; bottom:12px; /* 살짝 아래로 */
+      font-weight:800; font-size:12px; line-height:1;
+      color:#64748b; background:rgba(255,255,255,.85);
+      border:1px solid var(--ql-border); border-radius:999px;
+      padding:4px 8px; box-shadow:0 6px 18px var(--shadow);
+      z-index:2; user-select:none; pointer-events:none;
+      animation:nudge 1.6s ease-in-out infinite;
+    }
+    :root[data-theme="dark"] .quick-links.overflow-x .scroll-hint{
+      background:rgba(2,6,23,.8); color:#cbd5e1;
+    }
+    @keyframes nudge{
+      0%,100%{ transform:translateX(0); opacity:.9; }
+      50%{ transform:translateX(-8px); opacity:1; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .quick-links.overflow-x .scroll-hint{ animation:none; }
+    }
+
     .ai-help{text-align:center;margin:20px 0;}
     .ai-btn{padding:12px 20px;border-radius:12px;font-weight:900;font-size:16px;color:#fff;background:#ef4444;box-shadow:0 6px 18px var(--shadow);transition:background .2s, transform .1s;}
     .ai-btn:hover{background:#dc2626;transform:translateY(-2px);}
@@ -270,7 +313,7 @@
         <a class="link wetax" href="https://www.wetax.go.kr/etq/etp/epi/E070101M01.do" target="_blank" rel="noopener">위택스</a>
         <a class="link law" href="https://www.law.go.kr/LSW/lsSc.do?query=%EC%A7%80%EB%B0%A9%EC%84%B8%EB%B2%95" target="_blank" rel="noopener">지방세법</a>
       </div>
-      <!-- 스크롤 힌트 요소는 유지(스타일 삭제됨) -->
+      <!-- ⟷ 스크롤 힌트 배지 -->
       <div class="scroll-hint" aria-hidden="true">⟷ 스크롤</div>
     </nav>
 
@@ -337,7 +380,7 @@
       setTimeout(()=>{brand.style.animation='none';brand.style.filter='none';},10000);
     });
 
-    // -------- 퀵링크 가로 오버플로 감지 (힌트/페이드 CSS는 제거됨) --------
+    // -------- 퀵링크 가로 오버플로 감지 & 페이드/힌트 제어 (복원) --------
     (function(){
       const ql = document.querySelector('.quick-links');
       const row = ql?.querySelector('.row');
@@ -346,7 +389,6 @@
       function updateEdges(){
         const maxScroll = row.scrollWidth - row.clientWidth;
         const x = row.scrollLeft;
-        // 클래스를 토글하더라도 CSS가 제거되어 시각 효과는 없음
         if (maxScroll > 2) ql.classList.add('overflow-x'); else ql.classList.remove('overflow-x');
         ql.classList.toggle('at-start', x <= 2);
         ql.classList.toggle('at-end',   x >= maxScroll - 2);
@@ -356,13 +398,17 @@
       row.addEventListener('scroll', updateEdges, {passive:true});
       window.addEventListener('resize', updateEdges);
 
-      // 첫 스크롤 후 힌트 제거 (스타일은 없지만 요소는 삭제)
+      // 첫 스크롤 후 힌트 서서히 제거
       let hinted = false;
       row.addEventListener('scroll', ()=>{
         if(hinted) return;
         hinted = true;
         const hint = ql.querySelector('.scroll-hint');
-        hint && hint.remove();
+        if(hint){
+          hint.style.transition = 'opacity .5s ease .4s';
+          hint.style.opacity = '0';
+          setTimeout(()=> hint.remove(), 1200);
+        }
       }, {passive:true});
     })();
   </script>
