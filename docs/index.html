@@ -184,16 +184,17 @@
     .quick-links.overflow-x::after{ transition:opacity .25s ease; }
 
     .quick-links .scroll-hint{ display:none; }
-    .quick-links.overflow-x .scroll-hint{
-      display:block;
-      position:absolute; right:10px; bottom:12px; /* 살짝 아래로 */
-      font-weight:800; font-size:12px; line-height:1;
-      color:#64748b; background:rgba(255,255,255,.85);
-      border:1px solid var(--ql-border); border-radius:999px;
-      padding:4px 8px; box-shadow:0 6px 18px var(--shadow);
-      z-index:2; user-select:none; pointer-events:none;
-      animation:nudge 1.6s ease-in-out infinite;
-    }
+   .quick-links.overflow-x .scroll-hint{
+  display:block;
+  position:absolute; right:10px; bottom:4px; /* 더 아래로 내림 */
+  font-weight:800; font-size:12px; line-height:1;
+  color:#64748b; background:rgba(255,255,255,.85);
+  border:1px solid var(--ql-border); border-radius:999px;
+  padding:4px 8px; box-shadow:0 6px 18px var(--shadow);
+  z-index:2; user-select:none; pointer-events:none;
+  animation:nudge 1.6s ease-in-out infinite;
+}
+
     :root[data-theme="dark"] .quick-links.overflow-x .scroll-hint{
       background:rgba(2,6,23,.8); color:#cbd5e1;
     }
@@ -414,3 +415,4 @@
   </script>
 </body>
 </html>
+
