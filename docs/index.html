@@ -110,6 +110,13 @@
       font-weight:800; border-radius:10px; padding:7px 9px; cursor:pointer;
       box-shadow:0 6px 18px var(--shadow); font-size:1.05rem;
     }
+    /* (추가) 앱설치 버튼 스타일: 다크모드 버튼 좌측에 동일 톤으로 */
+    .install-btn{
+      margin-left:9px; appearance:none; border:1px solid var(--line);
+      background:rgba(255,255,255,.12); color:var(--text);
+      font-weight:800; border-radius:10px; padding:7px 9px; cursor:pointer;
+      box-shadow:0 6px 18px var(--shadow); font-size:1.05rem;
+    }
 
     /* ================= 브랜드 히어로(헤더 아래 중앙) ================= */
     .brand-hero{
@@ -277,6 +284,8 @@
         <span class="title-text">2025년 재산세 계산</span>
       </div>
       <div class="spacer"></div>
+      <!-- (추가) 앱설치 버튼: 다크모드 버튼 좌측에 위치 -->
+      <button id="btnInstall" class="install-btn" aria-label="앱 설치">⬇️ 앱설치</button>
       <button id="btnTheme" class="theme-toggle" aria-label="테마 전환">🌗 Auto</button>
     </div>
   </header>
@@ -442,8 +451,31 @@
         }
       }, {passive:true});
     })();
+
+    // -------- (추가) PWA 설치 로직 --------
+    (function(){
+      let deferredPrompt=null; const installBtn=document.getElementById('btnInstall');
+      // 브라우저가 설치 가능 신호를 줄 때 가로채어 저장
+      window.addEventListener('beforeinstallprompt',(e)=>{ e.preventDefault(); deferredPrompt=e; });
+      window.addEventListener('appinstalled',()=>{ deferredPrompt=null; });
+      // 버튼 클릭 시 설치 시도 / 미지원 안내
+      installBtn?.addEventListener('click', async ()=>{
+        try{
+          if(deferredPrompt){
+            deferredPrompt.prompt();
+            await deferredPrompt.userChoice;
+            deferredPrompt=null;
+          }else{
+            const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+            if(isIOS){
+              alert('iOS Safari의 공유 버튼 → "홈 화면에 추가"로 설치하세요.');
+            }else{
+              alert('브라우저 메뉴(⋮ 또는 ⋯)에서 "홈 화면에 추가"를 사용해 설치할 수 있어요.');
+            }
+          }
+        }catch(err){ console.error(err); }
+      });
+    })();
   </script>
 </body>
 </html>
-
-
