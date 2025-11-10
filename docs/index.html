@@ -206,8 +206,13 @@
     @media (prefers-reduced-motion: reduce){
       .quick-links.overflow-x .scroll-hint{ animation:none; }
     }
-
-    .ai-help{text-align:center;margin:28px 0 12px;} /* 10→11 */
+    .ai-help{text-align:center;margin:28px 0 11px;} /* 10→11 */
+    }
+/* 🔽 모바일(좁은 화면)에서는 간격을 키워 분리감 강화 */
+@media (max-width: 480px){
+  .quick-links{ margin-bottom:22px; }   /* 바로가기 아래 여백 +4px */
+  .ai-help{ margin-top:26px; }          /* AI 버튼 위 여백 +6px */
+}
     .ai-btn{padding:11px 18px;border-radius:12px;font-weight:900;font-size:16.5px;color:#fff;background:#ef4444;box-shadow:0 6px 18px var(--shadow);transition:background .2s, transform .1s;} /* 10x16→11x18, 15→16.5 */
     .ai-btn:hover{background:#dc2626;transform:translateY(-2px);}
 
@@ -424,6 +429,7 @@
   </script>
 </body>
 </html>
+
 
 
 
