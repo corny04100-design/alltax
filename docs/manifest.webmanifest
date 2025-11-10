@@ -1,6 +1,6 @@
 {
-  "name": "지방세계산",
-  "short_name": "지방세계산",
+  "name": "재산세계산",
+  "short_name": "재산세계산",
   "description": "재산세(공동주택/토지), 지역자원시설세 계산 서비스로 이동",
   "lang": "ko-KR",
   "dir": "ltr",
@@ -12,13 +12,13 @@
   "theme_color": "#2563eb",
   "icons": [
     {
-      "src": "icon-192-v1.png",
+      "src": "icon-192-v2.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "icon-512-v1.png",
+      "src": "icon-512-v2.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
