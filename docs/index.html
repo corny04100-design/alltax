@@ -370,7 +370,7 @@
       }
       function getNext(mode){ return mode==='light' ? 'dark' : mode==='dark' ? 'auto' : 'light'; }
 
-      let mode = localStorage.getItem('theme') || 'auto';
+      let mode = localStorage.getItem('theme') || 'dark';
       applyTheme(mode);
 
       const mql = window.matchMedia('(prefers-color-scheme: light)');
@@ -424,5 +424,6 @@
   </script>
 </body>
 </html>
+
 
 
