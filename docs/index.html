@@ -452,19 +452,31 @@
       }, {passive:true});
     })();
 
-    // -------- (추가) PWA 설치 로직 --------
+    // -------- (추가) PWA 설치 로직: 설치되면 버튼 숨김 --------
     (function(){
       let deferredPrompt=null; const installBtn=document.getElementById('btnInstall');
-      // 브라우저가 설치 가능 신호를 줄 때 가로채어 저장
-      window.addEventListener('beforeinstallprompt',(e)=>{ e.preventDefault(); deferredPrompt=e; });
-      window.addEventListener('appinstalled',()=>{ deferredPrompt=null; });
+
+      function hideInstall(){ if(installBtn){ installBtn.style.display='none'; } }
+      function showInstall(){ if(installBtn){ installBtn.style.display=''; } }
+
+      // 이미 앱 모드(standalone)면 처음부터 숨김
+      const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+      if(isStandalone){ hideInstall(); }
+
+      // 브라우저가 설치 가능 신호를 줄 때 버튼 표시
+      window.addEventListener('beforeinstallprompt',(e)=>{ e.preventDefault(); deferredPrompt=e; showInstall(); });
+
+      // 설치 완료되면 버튼 숨김
+      window.addEventListener('appinstalled',()=>{ deferredPrompt=null; hideInstall(); });
+
       // 버튼 클릭 시 설치 시도 / 미지원 안내
       installBtn?.addEventListener('click', async ()=>{
         try{
           if(deferredPrompt){
             deferredPrompt.prompt();
-            await deferredPrompt.userChoice;
+            const choice = await deferredPrompt.userChoice;
             deferredPrompt=null;
+            if(choice && choice.outcome === 'accepted'){ hideInstall(); }
           }else{
             const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
             if(isIOS){
@@ -474,6 +486,11 @@
             }
           }
         }catch(err){ console.error(err); }
+      });
+
+      // display-mode 변화 감지(일부 브라우저)
+      window.matchMedia('(display-mode: standalone)').addEventListener('change', (e)=>{
+        if(e.matches) hideInstall();
       });
     })();
   </script>
