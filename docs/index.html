@@ -284,8 +284,8 @@
         <span class="title-text">2025년 지방세 계산</span>
       </div>
       <div class="spacer"></div>
-      <!-- (추가) 앱설치 버튼: 다크모드 버튼 좌측에 위치 -->
-      <button id="btnInstall" class="install-btn" aria-label="앱 설치">⬇️ 앱설치</button>
+      <!-- (수정) 앱설치 버튼: 기본은 숨김, 조건 만족 시에만 표시 -->
+      <button id="btnInstall" class="install-btn" aria-label="앱 설치" style="display:none">⬇️ 앱설치</button>
       <button id="btnTheme" class="theme-toggle" aria-label="테마 전환">🌗 Auto</button>
     </div>
   </header>
@@ -452,22 +452,44 @@
       }, {passive:true});
     })();
 
-    // -------- (추가) PWA 설치 로직: 설치되면 버튼 숨김 --------
+    // -------- (수정) PWA 설치 로직: 설치되거나 설치된 상태면 버튼 숨김 + iOS 안내 --------
     (function(){
       let deferredPrompt=null; const installBtn=document.getElementById('btnInstall');
 
       function hideInstall(){ if(installBtn){ installBtn.style.display='none'; } }
       function showInstall(){ if(installBtn){ installBtn.style.display=''; } }
 
-      // 이미 앱 모드(standalone)면 처음부터 숨김
+      // 처음엔 숨김 상태에서 시작
+      hideInstall();
+
+      // 이미 앱 모드(standalone)면 숨김
       const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
       if(isStandalone){ hideInstall(); }
 
-      // 브라우저가 설치 가능 신호를 줄 때 버튼 표시
-      window.addEventListener('beforeinstallprompt',(e)=>{ e.preventDefault(); deferredPrompt=e; showInstall(); });
+      // 로컬 플래그: 한 번 설치 승인하면 이후에도 숨김
+      if(localStorage.getItem('pwaInstalled') === '1'){
+        hideInstall();
+      }
 
-      // 설치 완료되면 버튼 숨김
-      window.addEventListener('appinstalled',()=>{ deferredPrompt=null; hideInstall(); });
+      // (가능하면) 설치된 관련 앱 감지 -> 설치되어 있으면 숨김
+      if('getInstalledRelatedApps' in navigator){
+        try{
+          navigator.getInstalledRelatedApps().then((apps)=>{
+            if(apps && apps.length){ hideInstall(); }
+          }).catch(()=>{});
+        }catch(_){/* noop */}
+      }
+
+      // 브라우저가 설치 가능 신호를 줄 때만 버튼 표시 (단, 이미 설치된 경우는 무시)
+      window.addEventListener('beforeinstallprompt',(e)=>{
+        if(localStorage.getItem('pwaInstalled') === '1') return; // 설치된 경우 무시
+        e.preventDefault(); deferredPrompt=e; showInstall();
+      });
+
+      // 설치 완료되면 버튼 숨김 + 플래그 저장
+      window.addEventListener('appinstalled',()=>{
+        deferredPrompt=null; localStorage.setItem('pwaInstalled','1'); hideInstall();
+      });
 
       // 버튼 클릭 시 설치 시도 / 미지원 안내
       installBtn?.addEventListener('click', async ()=>{
@@ -476,13 +498,16 @@
             deferredPrompt.prompt();
             const choice = await deferredPrompt.userChoice;
             deferredPrompt=null;
-            if(choice && choice.outcome === 'accepted'){ hideInstall(); }
+            if(choice && choice.outcome === 'accepted'){
+              localStorage.setItem('pwaInstalled','1');
+              hideInstall();
+            }
           }else{
             const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
             if(isIOS){
-              alert('iOS Safari의 공유 버튼 → "홈 화면에 추가"로 설치하세요.');
+              alert('📱 iOS에서 홈 화면에 추가하려면 다음을 따라주세요:\n\n1️⃣ Safari로 이 페이지 열기\n2️⃣ 하단 공유 버튼(⬆️) 탭\n3️⃣ "홈 화면에 추가" 선택\n4️⃣ 이름 확인 후 추가');
             }else{
-              alert('브라우저 메뉴(⋮ 또는 ⋯)에서 "홈 화면에 추가"를 사용해 설치할 수 있어요.');
+              alert('브라우저 메뉴(⋮ 또는 ⋯)에서 "홈 화면에 추가"를 선택하면 설치할 수 있어요.');
             }
           }
         }catch(err){ console.error(err); }
@@ -496,7 +521,3 @@
   </script>
 </body>
 </html>
-
-
-
-
